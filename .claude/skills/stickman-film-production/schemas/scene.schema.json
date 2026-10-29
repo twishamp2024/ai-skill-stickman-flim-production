@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/scene.schema.json",
+  "title": "Scene",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "kage.scene/1"
+    },
+    "id": {
+      "$ref": "common.schema.json#/$defs/id_scn"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/semver"
+    },
+    "status": {
+      "$ref": "common.schema.json#/$defs/status"
+    },
+    "title": {
+      "type": "string"
+    },
+    "location": {
+      "$ref": "common.schema.json#/$defs/id_loc"
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id_evt"
+      }
+    },
+    "shots": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id_shot"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "continuity": {
+      "type": "object"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "id",
+    "version",
+    "status",
+    "location",
+    "shots"
+  ],
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x_": {}
+  }
+}

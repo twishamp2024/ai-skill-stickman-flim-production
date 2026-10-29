@@ -225,6 +225,20 @@ void testAgePostures() {
     CHECK(std::fabs(std::min(as.soleY(0), as.soleY(1))) < 0.02);
 }
 
+void testSitTransitionFloor() {
+    Scene sc = loadScene(json::parse(replaced(kSceneTemplate, "{\"type\": \"pick_up\", \"start\": 2.6, \"duration\": 0.8, \"prop\": \"box\", \"side\": \"r\"}",
+                                              "{\"type\": \"sit\", \"start\": 2.6, \"duration\": 0.9, \"seat_y\": 0.45}")));
+    MotionEvaluator m(sc);
+    double lowest = 1e9;
+    for (double t = 2.5; t <= 3.6; t += 1.0 / 96) {
+        CharacterState cs = m.evaluate(sc.characters[0], t);
+        lowest = std::min(lowest, std::min(cs.skel.soleY(0), cs.skel.soleY(1)));
+    }
+    CHECK(lowest > -1e-9);
+    CHECK(m.evaluate(sc.characters[0], 3.0).posture == "to_sit");
+    CHECK(m.evaluate(sc.characters[0], 3.6).posture == "sit");
+}
+
 void testWalkNoSliding() {
     Scene sc = testScene();
     MotionEvaluator m(sc);
@@ -358,6 +372,28 @@ void testSoftwareCoverage() {
     CHECK(px[3 * 4 + 3] >= 127 && px[3 * 4 + 3] <= 128);
 }
 
+void testLayerParallax() {
+    // A layer with parallax_y = 1 tracks vertical camera moves like the subject plane,
+    // while horizontal motion is damped (scenery seen through a window).
+    std::string text = replaced(kSceneTemplate, "{\"id\": \"bg\", \"order\": 0, \"parallax\": 0.5}",
+                                "{\"id\": \"bg\", \"order\": 0, \"parallax\": 0.5, \"parallax_y\": 1.0}");
+    text = replaced(text, "\"keys\": [{\"t\": 0, \"x\": 0, \"y\": 1, \"height\": 3}]",
+                    "\"keys\": [{\"t\": 0, \"x\": 0, \"y\": 1, \"height\": 3}, {\"t\": 1, \"x\": 1, \"y\": 2, \"height\": 3, \"ease\": \"linear\"}]");
+    Scene sc = loadScene(json::parse(text));
+    CHECK(sc.layers[0].parallaxY == 1.0 && sc.layers[0].parallax == 0.5);
+    CHECK(testScene().layers[0].parallaxY == 0.5);  // defaults to parallax
+    MotionEvaluator m(sc);
+    FrameBuilder fb(sc, m);
+    auto hillTop = [&](int f) {
+        DrawList dl; FrameProbe p; fb.build(f, dl, &p);
+        for (const auto& e : p.entities) if (e.id == "hill") return std::make_pair(e.bbox[0], e.bbox[1]);
+        return std::make_pair(0.0, 0.0);
+    };
+    auto a = hillTop(0), b = hillTop(24);  // camera moved +1 m in x and y
+    double ppu = 90.0 / 3.0;
+    CHECK_NEAR(b.second - a.second, 1.0 * ppu, 0.6);  // full vertical shift
+}
+
 void testStyles() {
     Scene sc = testScene();
     MotionEvaluator m(sc);
@@ -397,10 +433,10 @@ int main() {
     std::vector<T> tests = {
         {"json", testJson}, {"triangulation", testTriangulation}, {"stroke", testStroke},
         {"easing", testEasing}, {"rig_fk_ik", testRig}, {"age_postures", testAgePostures},
-        {"walk_no_foot_sliding", testWalkNoSliding}, {"turn_and_mouth", testTurnAndMouth},
+        {"walk_no_foot_sliding", testWalkNoSliding}, {"sit_transition_floor", testSitTransitionFloor}, {"turn_and_mouth", testTurnAndMouth},
         {"prop_attachment", testAttachment}, {"scene_validation", testSceneValidation},
         {"deterministic_rendering", testDeterministicRendering}, {"software_coverage", testSoftwareCoverage},
-        {"render_styles", testStyles}, {"gl_vs_soft", testGLAgreement}};
+        {"render_styles", testStyles}, {"layer_parallax", testLayerParallax}, {"gl_vs_soft", testGLAgreement}};
     for (const auto& t : tests) {
         int before = g_failures;
         std::printf("[ RUN  ] %s\n", t.name);

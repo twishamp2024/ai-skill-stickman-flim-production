@@ -1,0 +1,117 @@
+{
+  "schema": "kage.location/1",
+  "id": "loc_carriage",
+  "name": "Passenger carriage interior",
+  "version": "1.0.0",
+  "status": "approved",
+  "background": "sky_dusk",
+  "ground_y": 0,
+  "layers": [
+    {
+      "id": "outside_far",
+      "order": 0,
+      "parallax": 0.05,
+      "depth": 80,
+      "parallax_y": 1.0
+    },
+    {
+      "id": "outside_near",
+      "order": 1,
+      "parallax": 0.15,
+      "depth": 20,
+      "parallax_y": 1.0
+    },
+    {
+      "id": "wall",
+      "order": 2,
+      "parallax": 1.0,
+      "depth": 0
+    },
+    {
+      "id": "furniture",
+      "order": 3,
+      "parallax": 1.0,
+      "depth": 0
+    },
+    {
+      "id": "actors",
+      "order": 4,
+      "parallax": 1.0,
+      "depth": 0
+    }
+  ],
+  "instances": [
+    {
+      "id": "inst_view_hills",
+      "asset": "ast_hills_far",
+      "layer": "outside_far",
+      "position": [
+        0,
+        -0.25
+      ],
+      "velocity": [
+        -1.2,
+        0
+      ],
+      "tile": {
+        "period": 16,
+        "count": 2
+      }
+    },
+    {
+      "id": "inst_view_trees",
+      "asset": "ast_tree_row",
+      "layer": "outside_near",
+      "position": [
+        0,
+        0.15
+      ],
+      "velocity": [
+        -6.0,
+        0
+      ],
+      "tile": {
+        "period": 14,
+        "count": 2
+      }
+    },
+    {
+      "id": "inst_wall",
+      "asset": "ast_carriage_wall",
+      "layer": "wall",
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "inst_bench",
+      "asset": "ast_bench",
+      "layer": "furniture",
+      "position": [
+        0,
+        0
+      ]
+    }
+  ],
+  "marks": {
+    "aisle_entry": [
+      -3.4,
+      0
+    ],
+    "seat_maya": [
+      0.0,
+      0.45
+    ],
+    "seat_lila": [
+      0.62,
+      0.45
+    ],
+    "conductor_post": [
+      2.7,
+      0
+    ]
+  },
+  "ambience": "aud_amb_carriage",
+  "notes": "Wall windows are holes in the wall polygon; the scrolling exterior layers show through them."
+}

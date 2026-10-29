@@ -1,0 +1,10 @@
+{
+  "schema": "kage.dialogue/1",
+  "version": "0.1.0",
+  "status": "draft",
+  "speech_animation": {
+    "default_mode": "simple",
+    "gesture": true
+  },
+  "lines": []
+}

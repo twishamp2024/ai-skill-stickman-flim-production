@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/location.schema.json",
+  "title": "Location / environment",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "kage.location/1"
+    },
+    "id": {
+      "$ref": "common.schema.json#/$defs/id_loc"
+    },
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/semver"
+    },
+    "status": {
+      "$ref": "common.schema.json#/$defs/status"
+    },
+    "background": {
+      "$ref": "common.schema.json#/$defs/palette_name"
+    },
+    "ground_y": {
+      "type": "number"
+    },
+    "layers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "order": {
+            "type": "number"
+          },
+          "parallax": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 2
+          },
+          "depth": {
+            "type": "number",
+            "minimum": 0
+          },
+          "parallax_y": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 2,
+            "description": "vertical parallax; defaults to parallax (use 1 for views through windows)"
+          }
+        },
+        "required": [
+          "id",
+          "order"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "instances": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id_inst"
+          },
+          "asset": {
+            "$ref": "common.schema.json#/$defs/id_ast"
+          },
+          "layer": {
+            "type": "string"
+          },
+          "position": {
+            "$ref": "common.schema.json#/$defs/vec2"
+          },
+          "rotation": {
+            "type": "number"
+          },
+          "scale": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "flip": {
+            "type": "boolean"
+          },
+          "keys": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/transform_key"
+            },
+            "minItems": 1
+          },
+          "velocity": {
+            "$ref": "common.schema.json#/$defs/vec2"
+          },
+          "tile": {
+            "$ref": "common.schema.json#/$defs/tile"
+          },
+          "z": {
+            "type": "number"
+          },
+          "important": {
+            "type": "boolean"
+          },
+          "grip": {
+            "$ref": "common.schema.json#/$defs/vec2"
+          },
+          "attach": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "asset"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "marks": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "common.schema.json#/$defs/vec2"
+      }
+    },
+    "ambience": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/id_aud"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "id",
+    "name",
+    "version",
+    "status",
+    "background",
+    "layers",
+    "instances"
+  ],
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x_": {}
+  }
+}

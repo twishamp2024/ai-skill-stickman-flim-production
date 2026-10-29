@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/audio_plan.schema.json",
+  "title": "Audio plan",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "kage.audio_plan/1"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/semver"
+    },
+    "status": {
+      "$ref": "common.schema.json#/$defs/status"
+    },
+    "assets": {
+      "type": "object",
+      "patternProperties": {
+        "^aud_[a-z0-9_]+$": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "enum": [
+                "ambience",
+                "sfx",
+                "music",
+                "dialogue"
+              ]
+            },
+            "source": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "enum": [
+                    "synth",
+                    "file",
+                    "generated_external"
+                  ]
+                },
+                "preset": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string"
+                },
+                "duration_s": {
+                  "type": "number"
+                },
+                "tempo_bpm": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": true
+            },
+            "license": {
+              "type": "string",
+              "minLength": 3
+            },
+            "loop": {
+              "type": "boolean"
+            },
+            "provenance": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "source",
+            "license"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "asset": {
+            "$ref": "common.schema.json#/$defs/id_aud"
+          },
+          "anchor": {
+            "$ref": "common.schema.json#/$defs/anchor"
+          },
+          "gain_db": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "asset",
+          "anchor"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "animation_sfx": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "enum": [
+              "footsteps"
+            ]
+          },
+          "asset": {
+            "$ref": "common.schema.json#/$defs/id_aud"
+          },
+          "shots": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/id_shot"
+            }
+          },
+          "characters": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/id_chr"
+            }
+          },
+          "gain_db": {
+            "type": "number"
+          },
+          "child_gain_db": {
+            "type": "number"
+          },
+          "kinds": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "step",
+                "run_step",
+                "settle"
+              ]
+            }
+          }
+        },
+        "required": [
+          "source",
+          "asset",
+          "shots",
+          "characters",
+          "gain_db"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "ambience": {
+      "type": "object",
+      "properties": {
+        "by_location": {
+          "type": "boolean"
+        },
+        "crossfade_s": {
+          "$ref": "common.schema.json#/$defs/seconds"
+        },
+        "gain_db": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "music": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^cue_[a-z0-9_]+$"
+          },
+          "asset": {
+            "$ref": "common.schema.json#/$defs/id_aud"
+          },
+          "start": {
+            "$ref": "common.schema.json#/$defs/anchor"
+          },
+          "end": {
+            "$ref": "common.schema.json#/$defs/anchor"
+          },
+          "gain_db": {
+            "type": "number"
+          },
+          "fade_in_s": {
+            "$ref": "common.schema.json#/$defs/seconds"
+          },
+          "fade_out_s": {
+            "$ref": "common.schema.json#/$defs/seconds"
+          },
+          "duck_under_dialogue_db": {
+            "type": "number",
+            "minimum": 0
+          },
+          "purpose": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "asset",
+          "start",
+          "end"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "silence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "$ref": "common.schema.json#/$defs/anchor"
+          },
+          "end": {
+            "$ref": "common.schema.json#/$defs/anchor"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "start",
+          "end",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "assets"
+  ],
+  "additionalProperties": false
+}

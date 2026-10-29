@@ -1,0 +1,77 @@
+{
+  "schema": "kage.character/1",
+  "id": "chr_lila",
+  "name": "Lila",
+  "version": "0.1.0",
+  "status": "draft",
+  "role": "protagonist; daughter",
+  "relationships": [
+    {
+      "to": "chr_maya",
+      "type": "child_of"
+    }
+  ],
+  "identity": {
+    "gender_identity": "girl (stated: daughter)",
+    "presentation": "feminine",
+    "pronouns": "she/her",
+    "age_category": "child",
+    "age_years": 7
+  },
+  "body": {
+    "height_m": 1.2,
+    "build": "slim",
+    "proportion_overrides": {}
+  },
+  "palette": {
+    "line": "ink",
+    "head_fill": "paper",
+    "hair": "hair_auburn",
+    "top": "sunflower",
+    "bottom": "denim",
+    "shoes": "coral",
+    "accessory": "coral"
+  },
+  "components": [
+    {
+      "id": "hair.ponytail"
+    },
+    {
+      "id": "top.jacket"
+    },
+    {
+      "id": "bottom.shorts"
+    },
+    {
+      "id": "shoes.basic"
+    },
+    {
+      "id": "acc.backpack"
+    }
+  ],
+  "face": {
+    "enabled": true,
+    "style": "profile"
+  },
+  "motion": {
+    "energy": 1.0
+  },
+  "voice": "voc_lila",
+  "distinguishing_features": [
+    "child proportions (larger head ratio)",
+    "auburn ponytail",
+    "sunflower raincoat",
+    "coral backpack"
+  ],
+  "variants": [
+    {
+      "id": "no_backpack",
+      "remove": [
+        "acc.backpack"
+      ],
+      "add": [],
+      "applies_to": [],
+      "reason": "available if a later scene has her take the backpack off; unused in this film"
+    }
+  ]
+}

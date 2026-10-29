@@ -75,6 +75,7 @@ std::string probeJson(const Scene& scene, const std::vector<FrameProbe>& probes,
                 w.key("hand_l").beginArray().value(e.handL.x).value(e.handL.y).endArray();
                 w.key("hand_r").beginArray().value(e.handR.x).value(e.handR.y).endArray();
                 w.key("sole_y").beginArray().value(e.soleY[0]).value(e.soleY[1]).endArray();
+                w.key("head_px").beginArray().value(e.headPx[0]).value(e.headPx[1]).value(e.headPx[2]).endArray();
                 w.key("facing").value(e.facing).key("posture").value(e.posture).key("mouth").value(e.mouth);
             }
             w.endObject();

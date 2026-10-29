@@ -1,0 +1,58 @@
+{
+  "schema": "kage.animatic/1",
+  "format": "vertical",
+  "fps": {
+    "num": 12,
+    "den": 1
+  },
+  "size": [
+    480,
+    854
+  ],
+  "film": "output/review/animatic_vertical.mp4",
+  "storyboard": "output/review/storyboard_vertical.png",
+  "storyboard_columns": 3,
+  "shots": [
+    {
+      "id": "shot_s01_010",
+      "start_s": 0.0,
+      "duration_s": 4.0,
+      "tile": 0,
+      "timing": "generated"
+    },
+    {
+      "id": "shot_s02_010",
+      "start_s": 4.0,
+      "duration_s": 7.5,
+      "tile": 1,
+      "timing": "generated"
+    },
+    {
+      "id": "shot_s02_020",
+      "start_s": 11.5,
+      "duration_s": 4.583333,
+      "tile": 2,
+      "timing": "generated"
+    },
+    {
+      "id": "shot_s02_030",
+      "start_s": 16.083333,
+      "duration_s": 4.0,
+      "tile": 3,
+      "timing": "generated"
+    },
+    {
+      "id": "shot_s02_040",
+      "start_s": 20.083333,
+      "duration_s": 5.5,
+      "tile": 4,
+      "timing": "generated"
+    }
+  ],
+  "dialogue_timing": {
+    "line_001": "generated",
+    "line_002": "generated",
+    "line_003": "generated"
+  },
+  "review_required": "Approve shot order, timing and framing before final rendering."
+}

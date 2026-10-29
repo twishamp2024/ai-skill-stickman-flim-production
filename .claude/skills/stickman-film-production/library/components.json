@@ -1,0 +1,1374 @@
+{
+ "schema": "kage.component_library/1",
+ "version": "1.0.0",
+ "description": "Reusable appearance components bound to the shared rig. Coordinates are in the bound joint's frame (+x = facing direction, +y = up the bone for torso/head, rest direction of limbs = -y). 'unit' scales coordinates: head = head radius, torso = torso length, leg = leg length. Stroke widths are multiples of the character body line width (stroke_width_lw). Colors are palette slots ($slot) resolved per character. Components carry no gender: any character may use any component.",
+ "slots": [
+  "line",
+  "head_fill",
+  "hair",
+  "top",
+  "bottom",
+  "accent",
+  "shoes",
+  "accessory"
+ ],
+ "components": {
+  "hair.none": {
+   "category": "hair",
+   "primitives": []
+  },
+  "hair.short_crop": {
+   "category": "hair",
+   "silhouette": "close cap",
+   "primitives": [
+    {
+     "type": "polygon",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.2,
+     "fill": "$hair",
+     "points": [
+      {
+       "arc": [
+        0,
+        0,
+        1.3,
+        170,
+        22,
+        18
+       ]
+      },
+      [
+       0.95,
+       0.2
+      ],
+      [
+       0.6,
+       0.5
+      ],
+      {
+       "arc": [
+        0,
+        0,
+        0.62,
+        60,
+        165,
+        8
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "hair.spiky": {
+   "category": "hair",
+   "silhouette": "spikes",
+   "primitives": [
+    {
+     "type": "polygon",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.2,
+     "fill": "$hair",
+     "points": [
+      [
+       -1.02,
+       0.25
+      ],
+      [
+       -1.35,
+       0.55
+      ],
+      [
+       -0.85,
+       0.75
+      ],
+      [
+       -1.0,
+       1.25
+      ],
+      [
+       -0.45,
+       1.0
+      ],
+      [
+       -0.3,
+       1.5
+      ],
+      [
+       0.05,
+       1.05
+      ],
+      [
+       0.35,
+       1.45
+      ],
+      [
+       0.45,
+       0.95
+      ],
+      [
+       0.95,
+       1.15
+      ],
+      [
+       0.85,
+       0.65
+      ],
+      [
+       1.1,
+       0.4
+      ],
+      {
+       "arc": [
+        0,
+        0,
+        0.74,
+        30,
+        160,
+        8
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "hair.bob": {
+   "category": "hair",
+   "silhouette": "rounded jaw-length",
+   "primitives": [
+    {
+     "type": "polygon",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.2,
+     "fill": "$hair",
+     "points": [
+      {
+       "arc": [
+        0,
+        0,
+        1.2,
+        20,
+        228,
+        20
+       ]
+      },
+      [
+       -0.4,
+       -0.86
+      ],
+      [
+       -0.62,
+       -0.1
+      ],
+      {
+       "arc": [
+        0,
+        0,
+        0.76,
+        150,
+        28,
+        10
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "hair.long": {
+   "category": "hair",
+   "silhouette": "long behind shoulders",
+   "primitives": [
+    {
+     "type": "polygon",
+     "bind": "head",
+     "unit": "head",
+     "z": 1.9,
+     "fill": "$hair",
+     "points": [
+      [
+       -0.1,
+       1.0
+      ],
+      [
+       -1.18,
+       0.3
+      ],
+      [
+       -1.28,
+       -2.3
+      ],
+      [
+       -0.45,
+       -2.45
+      ],
+      [
+       -0.3,
+       -0.5
+      ]
+     ]
+    },
+    {
+     "type": "polygon",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.2,
+     "fill": "$hair",
+     "points": [
+      {
+       "arc": [
+        0,
+        0,
+        1.16,
+        200,
+        18,
+        18
+       ]
+      },
+      {
+       "arc": [
+        0,
+        0,
+        0.76,
+        30,
+        175,
+        10
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "hair.ponytail": {
+   "category": "hair",
+   "silhouette": "cap with ponytail",
+   "primitives": [
+    {
+     "type": "ellipse",
+     "bind": "head",
+     "unit": "head",
+     "z": 1.9,
+     "center": [
+      -1.45,
+      -0.25
+     ],
+     "rx": 0.32,
+     "ry": 0.75,
+     "rotation": -18,
+     "fill": "$hair"
+    },
+    {
+     "type": "circle",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.25,
+     "center": [
+      -1.05,
+      0.35
+     ],
+     "radius": 0.2,
+     "fill": "$accessory"
+    },
+    {
+     "type": "polygon",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.2,
+     "fill": "$hair",
+     "points": [
+      {
+       "arc": [
+        0,
+        0,
+        1.14,
+        175,
+        18,
+        16
+       ]
+      },
+      {
+       "arc": [
+        0,
+        0,
+        0.74,
+        30,
+        165,
+        10
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "hair.bun": {
+   "category": "hair",
+   "silhouette": "cap with top bun",
+   "primitives": [
+    {
+     "type": "circle",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.15,
+     "center": [
+      -0.72,
+      1.0
+     ],
+     "radius": 0.45,
+     "fill": "$hair"
+    },
+    {
+     "type": "polygon",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.2,
+     "fill": "$hair",
+     "points": [
+      {
+       "arc": [
+        0,
+        0,
+        1.14,
+        175,
+        18,
+        16
+       ]
+      },
+      {
+       "arc": [
+        0,
+        0,
+        0.74,
+        30,
+        165,
+        10
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "hair.curly": {
+   "category": "hair",
+   "silhouette": "bumpy volume",
+   "primitives": [
+    {
+     "type": "circle",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.2,
+     "center": [
+      -1.0,
+      0.45
+     ],
+     "radius": 0.42,
+     "fill": "$hair"
+    },
+    {
+     "type": "circle",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.2,
+     "center": [
+      -0.68,
+      0.98
+     ],
+     "radius": 0.42,
+     "fill": "$hair"
+    },
+    {
+     "type": "circle",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.2,
+     "center": [
+      -0.05,
+      1.18
+     ],
+     "radius": 0.42,
+     "fill": "$hair"
+    },
+    {
+     "type": "circle",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.2,
+     "center": [
+      0.55,
+      1.0
+     ],
+     "radius": 0.38,
+     "fill": "$hair"
+    },
+    {
+     "type": "circle",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.2,
+     "center": [
+      -1.05,
+      -0.15
+     ],
+     "radius": 0.36,
+     "fill": "$hair"
+    }
+   ]
+  },
+  "top.tshirt": {
+   "category": "top",
+   "scale_x_by_build": true,
+   "primitives": [
+    {
+     "type": "polygon",
+     "unit": "torso",
+     "z": 0.5,
+     "fill": "$top",
+     "stroke": "$line",
+     "stroke_width_lw": 0.45,
+     "points": [
+      {
+       "bind": "chest",
+       "p": [
+        -0.0864,
+        0.03
+       ]
+      },
+      {
+       "bind": "chest",
+       "p": [
+        0.0864,
+        0.03
+       ]
+      },
+      {
+       "bind": "chest",
+       "p": [
+        0.1224,
+        -0.16
+       ]
+      },
+      {
+       "bind": "pelvis",
+       "p": [
+        0.1224,
+        0.02
+       ]
+      },
+      {
+       "bind": "pelvis",
+       "p": [
+        -0.1224,
+        0.02
+       ]
+      },
+      {
+       "bind": "chest",
+       "p": [
+        -0.1224,
+        -0.16
+       ]
+      }
+     ]
+    },
+    {
+     "type": "bone",
+     "from": "shoulder_l",
+     "to": "elbow_l",
+     "t0": 0.0,
+     "t1": 0.55,
+     "stroke": "$line",
+     "stroke_width_lw": 2.78,
+     "z": -2.91
+    },
+    {
+     "type": "bone",
+     "from": "shoulder_l",
+     "to": "elbow_l",
+     "t0": 0.0,
+     "t1": 0.55,
+     "stroke": "$top",
+     "stroke_width_lw": 2.08,
+     "z": -2.9
+    },
+    {
+     "type": "bone",
+     "from": "shoulder_r",
+     "to": "elbow_r",
+     "t0": 0.0,
+     "t1": 0.55,
+     "stroke": "$line",
+     "stroke_width_lw": 2.78,
+     "z": 3.09
+    },
+    {
+     "type": "bone",
+     "from": "shoulder_r",
+     "to": "elbow_r",
+     "t0": 0.0,
+     "t1": 0.55,
+     "stroke": "$top",
+     "stroke_width_lw": 2.08,
+     "z": 3.1
+    }
+   ]
+  },
+  "top.jacket": {
+   "category": "top",
+   "scale_x_by_build": true,
+   "primitives": [
+    {
+     "type": "polygon",
+     "unit": "torso",
+     "z": 0.5,
+     "fill": "$top",
+     "stroke": "$line",
+     "stroke_width_lw": 0.45,
+     "points": [
+      {
+       "bind": "chest",
+       "p": [
+        -0.0936,
+        0.04
+       ]
+      },
+      {
+       "bind": "chest",
+       "p": [
+        0.0936,
+        0.04
+       ]
+      },
+      {
+       "bind": "chest",
+       "p": [
+        0.1368,
+        -0.16
+       ]
+      },
+      {
+       "bind": "pelvis",
+       "p": [
+        0.1512,
+        -0.14
+       ]
+      },
+      {
+       "bind": "pelvis",
+       "p": [
+        -0.144,
+        -0.14
+       ]
+      },
+      {
+       "bind": "chest",
+       "p": [
+        -0.1368,
+        -0.16
+       ]
+      }
+     ]
+    },
+    {
+     "type": "bone",
+     "from": "shoulder_l",
+     "to": "elbow_l",
+     "t0": 0.0,
+     "t1": 1.0,
+     "stroke": "$line",
+     "stroke_width_lw": 2.7,
+     "z": -2.91
+    },
+    {
+     "type": "bone",
+     "from": "shoulder_l",
+     "to": "elbow_l",
+     "t0": 0.0,
+     "t1": 1.0,
+     "stroke": "$top",
+     "stroke_width_lw": 2.0,
+     "z": -2.9
+    },
+    {
+     "type": "bone",
+     "from": "elbow_l",
+     "to": "hand_l",
+     "t0": 0.0,
+     "t1": 0.82,
+     "stroke": "$line",
+     "stroke_width_lw": 2.54,
+     "z": -2.91
+    },
+    {
+     "type": "bone",
+     "from": "elbow_l",
+     "to": "hand_l",
+     "t0": 0.0,
+     "t1": 0.82,
+     "stroke": "$top",
+     "stroke_width_lw": 1.84,
+     "z": -2.9
+    },
+    {
+     "type": "bone",
+     "from": "shoulder_r",
+     "to": "elbow_r",
+     "t0": 0.0,
+     "t1": 1.0,
+     "stroke": "$line",
+     "stroke_width_lw": 2.7,
+     "z": 3.09
+    },
+    {
+     "type": "bone",
+     "from": "shoulder_r",
+     "to": "elbow_r",
+     "t0": 0.0,
+     "t1": 1.0,
+     "stroke": "$top",
+     "stroke_width_lw": 2.0,
+     "z": 3.1
+    },
+    {
+     "type": "bone",
+     "from": "elbow_r",
+     "to": "hand_r",
+     "t0": 0.0,
+     "t1": 0.82,
+     "stroke": "$line",
+     "stroke_width_lw": 2.54,
+     "z": 3.09
+    },
+    {
+     "type": "bone",
+     "from": "elbow_r",
+     "to": "hand_r",
+     "t0": 0.0,
+     "t1": 0.82,
+     "stroke": "$top",
+     "stroke_width_lw": 1.84,
+     "z": 3.1
+    }
+   ]
+  },
+  "top.long_sleeve": {
+   "category": "top",
+   "scale_x_by_build": true,
+   "primitives": [
+    {
+     "type": "polygon",
+     "unit": "torso",
+     "z": 0.5,
+     "fill": "$top",
+     "stroke": "$line",
+     "stroke_width_lw": 0.45,
+     "points": [
+      {
+       "bind": "chest",
+       "p": [
+        -0.0864,
+        0.03
+       ]
+      },
+      {
+       "bind": "chest",
+       "p": [
+        0.0864,
+        0.03
+       ]
+      },
+      {
+       "bind": "chest",
+       "p": [
+        0.1152,
+        -0.16
+       ]
+      },
+      {
+       "bind": "pelvis",
+       "p": [
+        0.1152,
+        0.02
+       ]
+      },
+      {
+       "bind": "pelvis",
+       "p": [
+        -0.1152,
+        0.02
+       ]
+      },
+      {
+       "bind": "chest",
+       "p": [
+        -0.1152,
+        -0.16
+       ]
+      }
+     ]
+    },
+    {
+     "type": "bone",
+     "from": "shoulder_l",
+     "to": "elbow_l",
+     "stroke": "$line",
+     "stroke_width_lw": 2.46,
+     "z": -2.91
+    },
+    {
+     "type": "bone",
+     "from": "shoulder_l",
+     "to": "elbow_l",
+     "stroke": "$top",
+     "stroke_width_lw": 1.76,
+     "z": -2.9
+    },
+    {
+     "type": "bone",
+     "from": "elbow_l",
+     "to": "hand_l",
+     "t1": 0.85,
+     "stroke": "$line",
+     "stroke_width_lw": 2.3,
+     "z": -2.91
+    },
+    {
+     "type": "bone",
+     "from": "elbow_l",
+     "to": "hand_l",
+     "t1": 0.85,
+     "stroke": "$top",
+     "stroke_width_lw": 1.6,
+     "z": -2.9
+    },
+    {
+     "type": "bone",
+     "from": "shoulder_r",
+     "to": "elbow_r",
+     "stroke": "$line",
+     "stroke_width_lw": 2.46,
+     "z": 3.09
+    },
+    {
+     "type": "bone",
+     "from": "shoulder_r",
+     "to": "elbow_r",
+     "stroke": "$top",
+     "stroke_width_lw": 1.76,
+     "z": 3.1
+    },
+    {
+     "type": "bone",
+     "from": "elbow_r",
+     "to": "hand_r",
+     "t1": 0.85,
+     "stroke": "$line",
+     "stroke_width_lw": 2.3,
+     "z": 3.09
+    },
+    {
+     "type": "bone",
+     "from": "elbow_r",
+     "to": "hand_r",
+     "t1": 0.85,
+     "stroke": "$top",
+     "stroke_width_lw": 1.6,
+     "z": 3.1
+    }
+   ]
+  },
+  "top.dress": {
+   "category": "top",
+   "scale_x_by_build": true,
+   "covers_bottom": true,
+   "primitives": [
+    {
+     "type": "polygon",
+     "unit": "torso",
+     "z": 0.5,
+     "fill": "$top",
+     "stroke": "$line",
+     "stroke_width_lw": 0.45,
+     "points": [
+      {
+       "bind": "chest",
+       "p": [
+        -0.0864,
+        0.03
+       ]
+      },
+      {
+       "bind": "chest",
+       "p": [
+        0.0864,
+        0.03
+       ]
+      },
+      {
+       "bind": "chest",
+       "p": [
+        0.108,
+        -0.16
+       ]
+      },
+      {
+       "bind": "pelvis",
+       "p": [
+        0.108,
+        0.05
+       ]
+      },
+      {
+       "bind": "pelvis",
+       "p": [
+        -0.108,
+        0.05
+       ]
+      },
+      {
+       "bind": "chest",
+       "p": [
+        -0.108,
+        -0.16
+       ]
+      }
+     ]
+    },
+    {
+     "type": "polygon",
+     "bind": "pelvis",
+     "unit": "leg",
+     "z": 1.5,
+     "fill": "$top",
+     "stroke": "$line",
+     "stroke_width_lw": 0.45,
+     "points": [
+      [
+       -0.15,
+       0.06
+      ],
+      [
+       0.15,
+       0.06
+      ],
+      [
+       0.36,
+       -0.5
+      ],
+      [
+       -0.36,
+       -0.5
+      ]
+     ]
+    }
+   ]
+  },
+  "bottom.trousers": {
+   "category": "bottom",
+   "primitives": [
+    {
+     "type": "bone",
+     "from": "hip_l",
+     "to": "knee_l",
+     "stroke": "$line",
+     "stroke_width_lw": 2.54,
+     "z": -1.91
+    },
+    {
+     "type": "bone",
+     "from": "hip_l",
+     "to": "knee_l",
+     "stroke": "$bottom",
+     "stroke_width_lw": 1.84,
+     "z": -1.9
+    },
+    {
+     "type": "bone",
+     "from": "knee_l",
+     "to": "ankle_l",
+     "t1": 0.92,
+     "stroke": "$line",
+     "stroke_width_lw": 2.38,
+     "z": -1.91
+    },
+    {
+     "type": "bone",
+     "from": "knee_l",
+     "to": "ankle_l",
+     "t1": 0.92,
+     "stroke": "$bottom",
+     "stroke_width_lw": 1.68,
+     "z": -1.9
+    },
+    {
+     "type": "bone",
+     "from": "hip_r",
+     "to": "knee_r",
+     "stroke": "$line",
+     "stroke_width_lw": 2.54,
+     "z": 1.09
+    },
+    {
+     "type": "bone",
+     "from": "hip_r",
+     "to": "knee_r",
+     "stroke": "$bottom",
+     "stroke_width_lw": 1.84,
+     "z": 1.1
+    },
+    {
+     "type": "bone",
+     "from": "knee_r",
+     "to": "ankle_r",
+     "t1": 0.92,
+     "stroke": "$line",
+     "stroke_width_lw": 2.38,
+     "z": 1.09
+    },
+    {
+     "type": "bone",
+     "from": "knee_r",
+     "to": "ankle_r",
+     "t1": 0.92,
+     "stroke": "$bottom",
+     "stroke_width_lw": 1.68,
+     "z": 1.1
+    }
+   ]
+  },
+  "bottom.shorts": {
+   "category": "bottom",
+   "primitives": [
+    {
+     "type": "bone",
+     "from": "hip_l",
+     "to": "knee_l",
+     "t1": 0.7,
+     "stroke": "$line",
+     "stroke_width_lw": 2.78,
+     "z": -1.91
+    },
+    {
+     "type": "bone",
+     "from": "hip_l",
+     "to": "knee_l",
+     "t1": 0.7,
+     "stroke": "$bottom",
+     "stroke_width_lw": 2.08,
+     "z": -1.9
+    },
+    {
+     "type": "bone",
+     "from": "hip_r",
+     "to": "knee_r",
+     "t1": 0.7,
+     "stroke": "$line",
+     "stroke_width_lw": 2.78,
+     "z": 1.09
+    },
+    {
+     "type": "bone",
+     "from": "hip_r",
+     "to": "knee_r",
+     "t1": 0.7,
+     "stroke": "$bottom",
+     "stroke_width_lw": 2.08,
+     "z": 1.1
+    }
+   ]
+  },
+  "bottom.skirt": {
+   "category": "bottom",
+   "primitives": [
+    {
+     "type": "polygon",
+     "bind": "pelvis",
+     "unit": "leg",
+     "z": 1.5,
+     "fill": "$bottom",
+     "stroke": "$line",
+     "stroke_width_lw": 0.45,
+     "points": [
+      [
+       -0.16,
+       0.05
+      ],
+      [
+       0.16,
+       0.05
+      ],
+      [
+       0.3,
+       -0.42
+      ],
+      [
+       -0.3,
+       -0.42
+      ]
+     ]
+    }
+   ]
+  },
+  "shoes.basic": {
+   "category": "shoes",
+   "primitives": [
+    {
+     "type": "bone",
+     "from": "ankle_l",
+     "to": "toe_l",
+     "stroke": "$shoes",
+     "stroke_width_lw": 1.6,
+     "z": -1.8
+    },
+    {
+     "type": "bone",
+     "from": "ankle_r",
+     "to": "toe_r",
+     "stroke": "$shoes",
+     "stroke_width_lw": 1.6,
+     "z": 1.2
+    }
+   ]
+  },
+  "acc.shoulder_bag": {
+   "category": "accessory",
+   "primitives": [
+    {
+     "type": "polyline",
+     "unit": "torso",
+     "z": 3.2,
+     "stroke": "$accessory",
+     "stroke_width_lw": 0.6,
+     "points": [
+      {
+       "bind": "chest",
+       "p": [
+        0.02,
+        -0.06
+       ]
+      },
+      {
+       "bind": "pelvis",
+       "p": [
+        0.14,
+        0.04
+       ]
+      }
+     ]
+    },
+    {
+     "type": "polygon",
+     "bind": "pelvis",
+     "unit": "torso",
+     "z": 3.3,
+     "fill": "$accessory",
+     "stroke": "$line",
+     "stroke_width_lw": 0.45,
+     "points": [
+      [
+       0.04,
+       0.08
+      ],
+      [
+       0.33,
+       0.08
+      ],
+      [
+       0.31,
+       -0.2
+      ],
+      [
+       0.06,
+       -0.2
+      ]
+     ]
+    }
+   ]
+  },
+  "acc.backpack": {
+   "category": "accessory",
+   "primitives": [
+    {
+     "type": "polygon",
+     "bind": "chest",
+     "unit": "torso",
+     "z": -0.5,
+     "fill": "$accessory",
+     "stroke": "$line",
+     "stroke_width_lw": 0.45,
+     "points": [
+      [
+       -0.16,
+       -0.08
+      ],
+      [
+       -0.46,
+       -0.1
+      ],
+      [
+       -0.5,
+       -0.68
+      ],
+      [
+       -0.18,
+       -0.66
+      ]
+     ]
+    }
+   ]
+  },
+  "acc.uniform_cap": {
+   "category": "headwear",
+   "primitives": [
+    {
+     "type": "polygon",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.4,
+     "fill": "$accessory",
+     "stroke": "$line",
+     "stroke_width_lw": 0.45,
+     "points": [
+      [
+       -1.02,
+       0.5
+      ],
+      [
+       1.0,
+       0.58
+      ],
+      [
+       0.96,
+       1.2
+      ],
+      [
+       -1.0,
+       1.12
+      ]
+     ]
+    },
+    {
+     "type": "polygon",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.45,
+     "fill": "$line",
+     "points": [
+      [
+       0.85,
+       0.56
+      ],
+      [
+       1.6,
+       0.46
+      ],
+      [
+       1.58,
+       0.6
+      ],
+      [
+       0.95,
+       0.74
+      ]
+     ]
+    }
+   ]
+  },
+  "acc.sun_hat": {
+   "category": "headwear",
+   "primitives": [
+    {
+     "type": "polygon",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.4,
+     "fill": "$accessory",
+     "stroke": "$line",
+     "stroke_width_lw": 0.45,
+     "points": [
+      [
+       -1.75,
+       0.55
+      ],
+      [
+       1.75,
+       0.55
+      ],
+      [
+       1.7,
+       0.7
+      ],
+      [
+       0.8,
+       0.75
+      ],
+      [
+       0.7,
+       1.35
+      ],
+      [
+       -0.7,
+       1.35
+      ],
+      [
+       -0.8,
+       0.75
+      ],
+      [
+       -1.7,
+       0.7
+      ]
+     ]
+    }
+   ]
+  },
+  "acc.glasses": {
+   "category": "eyewear",
+   "primitives": [
+    {
+     "type": "circle",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.6,
+     "center": [
+      0.45,
+      0.18
+     ],
+     "radius": 0.27,
+     "stroke": "$line",
+     "stroke_width_lw": 0.35
+    },
+    {
+     "type": "polyline",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.6,
+     "stroke": "$line",
+     "stroke_width_lw": 0.3,
+     "points": [
+      [
+       0.72,
+       0.2
+      ],
+      [
+       0.98,
+       0.24
+      ]
+     ]
+    },
+    {
+     "type": "polyline",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.6,
+     "stroke": "$line",
+     "stroke_width_lw": 0.3,
+     "points": [
+      [
+       0.18,
+       0.22
+      ],
+      [
+       -0.45,
+       0.28
+      ]
+     ]
+    }
+   ]
+  },
+  "acc.scarf": {
+   "category": "accessory",
+   "primitives": [
+    {
+     "type": "polygon",
+     "bind": "chest",
+     "unit": "torso",
+     "z": 2.1,
+     "fill": "$accessory",
+     "stroke": "$line",
+     "stroke_width_lw": 0.4,
+     "points": [
+      [
+       -0.16,
+       0.08
+      ],
+      [
+       0.18,
+       0.08
+      ],
+      [
+       0.18,
+       -0.06
+      ],
+      [
+       0.24,
+       -0.4
+      ],
+      [
+       0.12,
+       -0.42
+      ],
+      [
+       0.08,
+       -0.06
+      ],
+      [
+       -0.16,
+       -0.06
+      ]
+     ]
+    }
+   ]
+  },
+  "acc.hair_bow": {
+   "category": "accessory",
+   "primitives": [
+    {
+     "type": "polygon",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.3,
+     "fill": "$accessory",
+     "stroke": "$line",
+     "stroke_width_lw": 0.3,
+     "points": [
+      [
+       -0.75,
+       1.05
+      ],
+      [
+       -1.15,
+       1.35
+      ],
+      [
+       -1.1,
+       0.8
+      ]
+     ]
+    },
+    {
+     "type": "polygon",
+     "bind": "head",
+     "unit": "head",
+     "z": 2.3,
+     "fill": "$accessory",
+     "stroke": "$line",
+     "stroke_width_lw": 0.3,
+     "points": [
+      [
+       -0.75,
+       1.05
+      ],
+      [
+       -0.3,
+       0.85
+      ],
+      [
+       -0.4,
+       1.4
+      ]
+     ]
+    }
+   ]
+  }
+ }
+}

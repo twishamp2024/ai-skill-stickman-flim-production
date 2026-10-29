@@ -1,0 +1,48 @@
+{
+  "schema": "kage.production/1",
+  "project_id": "prj_new",
+  "title": "Untitled",
+  "version": "0.1.0",
+  "language": "en-US",
+  "audience": "",
+  "tone": "",
+  "target_duration_s": 60,
+  "fps": {
+    "num": 24,
+    "den": 1
+  },
+  "sequence": [],
+  "formats": [
+    {
+      "id": "landscape",
+      "aspect": "16:9",
+      "width": 1280,
+      "height": 720,
+      "primary": true
+    }
+  ],
+  "delivery": {
+    "container": "mp4",
+    "video_codec": "libx264",
+    "pixel_format": "yuv420p",
+    "crf": 18,
+    "audio_codec": "aac",
+    "audio_bitrate": "192k",
+    "sample_rate": 48000,
+    "channels": 2,
+    "loudness_lufs": -16.0,
+    "true_peak_dbtp": -1.5,
+    "subtitles": true
+  },
+  "approval_policy": {
+    "render_requires": [
+      "approved",
+      "locked"
+    ],
+    "animatic_allows_draft": true,
+    "creative_changes_require_user": true
+  },
+  "assumptions": [
+    "Default format 16:9 1280x720 24 fps chosen because none was specified."
+  ]
+}

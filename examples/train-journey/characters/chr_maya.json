@@ -1,0 +1,31 @@
+{
+  "schema": "kage.character/1",
+  "id": "chr_maya",
+  "name": "Maya",
+  "version": "1.0.0",
+  "status": "approved",
+  "role": "protagonist; mother",
+  "relationships": [{"to": "chr_lila", "type": "parent_of"}],
+  "identity": {
+    "gender_identity": "woman (stated: mother)",
+    "presentation": "feminine",
+    "pronouns": "she/her",
+    "age_category": "adult",
+    "age_years": 34
+  },
+  "body": {"height_m": 1.66, "build": "average", "proportion_overrides": {}},
+  "palette": {"line": "ink", "head_fill": "paper", "hair": "hair_dark", "top": "plum", "bottom": "slate", "shoes": "ink", "accessory": "mustard"},
+  "components": [
+    {"id": "hair.short_crop"},
+    {"id": "top.jacket"},
+    {"id": "bottom.trousers"},
+    {"id": "shoes.basic"},
+    {"id": "acc.shoulder_bag"}
+  ],
+  "face": {"enabled": true, "style": "profile"},
+  "motion": {"energy": 0.9},
+  "voice": "voc_maya",
+  "distinguishing_features": ["adult height", "short dark cropped hair", "plum jacket", "mustard shoulder bag"],
+  "variants": [],
+  "notes": "Short hair and trousers are deliberate: presentation is not inferred from hairstyle or clothing."
+}

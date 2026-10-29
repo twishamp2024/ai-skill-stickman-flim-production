@@ -1,0 +1,20 @@
+{
+  "schema": "kage.dialogue/1",
+  "version": "1.0.0",
+  "status": "approved",
+  "speech_animation": {"default_mode": "simple", "gesture": true},
+  "lines": [
+    {"id": "line_001", "character": "chr_conductor", "voice": "voc_conductor", "text": "Evening! The window seats are free.", "language": "en-US",
+     "shot": "shot_s02_010", "offset_s": 3.35, "estimated_s": 2.2,
+     "delivery": {"emotion": "friendly", "pace": "normal", "volume": "normal", "pauses_ms": {"after_word": {"Evening!": 250}}, "gesture": "talk"},
+     "subtitle": true, "status": "approved"},
+    {"id": "line_002", "character": "chr_lila", "voice": "voc_lila", "text": "Mama, will Nani remember me?", "language": "en-US",
+     "shot": "shot_s02_020", "offset_s": 1.85, "estimated_s": 2.1,
+     "delivery": {"emotion": "worried", "pace": "slow", "volume": "soft", "pauses_ms": {"after_word": {"Mama,": 200}}, "gesture": "talk"},
+     "subtitle": true, "status": "approved"},
+    {"id": "line_003", "character": "chr_maya", "voice": "voc_maya", "text": "She talks about you every single day.", "language": "en-US",
+     "shot": "shot_s02_030", "offset_s": 0.5, "estimated_s": 2.3,
+     "delivery": {"emotion": "warm", "pace": "slow", "volume": "soft", "pauses_ms": {}, "gesture": "talk"},
+     "subtitle": true, "status": "approved"}
+  ]
+}

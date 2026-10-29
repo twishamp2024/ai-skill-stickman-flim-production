@@ -60,6 +60,7 @@ struct Pose {
     double pelvisY = 0;     // pelvis height above the root (ground) point
     double pelvisX = 0;     // horizontal pelvis offset from the root point
     double groundLock = 1;  // 1 = shift vertically so the lowest sole touches y=0
+    bool floorClamp = true; // never let a sole sink below y=0 (e.g. mid sit/stand transition)
 };
 
 Pose lerpPose(const Pose& a, const Pose& b, double t);

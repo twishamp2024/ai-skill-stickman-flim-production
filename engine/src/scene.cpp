@@ -331,11 +331,12 @@ Scene loadScene(const json::Value& root) {
             if (!ids.insert(l.id).second) lc.fail("duplicate layer id '" + l.id + "'");
             l.order = num(lv, "order", lc, static_cast<double>(i));
             l.parallax = num(lv, "parallax", lc, 1.0);
+            l.parallaxY = num(lv, "parallax_y", lc, l.parallax);
             l.depth = num(lv, "depth", lc, 0.0);
             s.layers.push_back(l);
         }
     }
-    if (s.layers.empty()) s.layers.push_back({"main", 0, 1, 0});
+    if (s.layers.empty()) s.layers.push_back({"main", 0, 1, 1, 0});
 
     const Value& cam = req(root, "camera", c);
     Ctx cc = c.sub("camera");

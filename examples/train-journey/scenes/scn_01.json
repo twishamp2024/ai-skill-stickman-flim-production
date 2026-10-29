@@ -1,0 +1,6 @@
+{
+  "schema": "kage.scene/1", "id": "scn_01", "version": "1.0.0", "status": "approved",
+  "title": "The train in the hills", "location": "loc_countryside",
+  "events": ["evt_02"], "shots": ["shot_s01_010"],
+  "continuity": {"screen_direction": "train travels screen-right"}
+}

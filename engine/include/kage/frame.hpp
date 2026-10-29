@@ -32,6 +32,7 @@ struct EntityProbe {
     int facing = 1;
     std::string posture, mouth, attachedTo;
     double soleY[2] = {0, 0};
+    double headPx[3] = {0, 0, 0};  // pixel x, y, radius
 };
 
 struct FrameProbe {

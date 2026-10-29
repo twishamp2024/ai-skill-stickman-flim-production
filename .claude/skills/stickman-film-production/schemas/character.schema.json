@@ -1,0 +1,295 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/character.schema.json",
+  "title": "Character identity",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "kage.character/1"
+    },
+    "id": {
+      "$ref": "common.schema.json#/$defs/id_chr"
+    },
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/semver"
+    },
+    "status": {
+      "$ref": "common.schema.json#/$defs/status"
+    },
+    "role": {
+      "type": "string"
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "to": {
+            "$ref": "common.schema.json#/$defs/id_chr"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "to",
+          "type"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "identity": {
+      "type": "object",
+      "properties": {
+        "gender_identity": {
+          "type": "string",
+          "description": "As stated by the story; never inferred from appearance."
+        },
+        "presentation": {
+          "enum": [
+            "masculine",
+            "feminine",
+            "androgynous",
+            "neutral",
+            "custom"
+          ],
+          "description": "Visual presentation; independent of every geometry control."
+        },
+        "presentation_notes": {
+          "type": "string"
+        },
+        "pronouns": {
+          "type": "string"
+        },
+        "age_category": {
+          "enum": [
+            "infant",
+            "young_child",
+            "child",
+            "teen",
+            "adult",
+            "older_adult"
+          ]
+        },
+        "age_years": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "presentation",
+        "age_category"
+      ],
+      "additionalProperties": false
+    },
+    "body": {
+      "type": "object",
+      "properties": {
+        "height_m": {
+          "type": "number",
+          "minimum": 0.4,
+          "maximum": 2.6
+        },
+        "build": {
+          "enum": [
+            "slim",
+            "average",
+            "broad",
+            "round"
+          ]
+        },
+        "proportion_overrides": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "palette": {
+      "type": "object",
+      "properties": {
+        "line": {
+          "$ref": "common.schema.json#/$defs/palette_name"
+        },
+        "head_fill": {
+          "$ref": "common.schema.json#/$defs/palette_name"
+        },
+        "hair": {
+          "$ref": "common.schema.json#/$defs/palette_name"
+        },
+        "top": {
+          "$ref": "common.schema.json#/$defs/palette_name"
+        },
+        "bottom": {
+          "$ref": "common.schema.json#/$defs/palette_name"
+        },
+        "accent": {
+          "$ref": "common.schema.json#/$defs/palette_name"
+        },
+        "shoes": {
+          "$ref": "common.schema.json#/$defs/palette_name"
+        },
+        "accessory": {
+          "$ref": "common.schema.json#/$defs/palette_name"
+        }
+      },
+      "required": [
+        "line",
+        "head_fill"
+      ],
+      "additionalProperties": false
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z]+\\.[a-z0-9_]+$"
+          },
+          "colors": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "common.schema.json#/$defs/palette_name"
+            }
+          },
+          "z_offset": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "face": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "style": {
+          "enum": [
+            "profile",
+            "front"
+          ]
+        },
+        "mouth_mode": {
+          "enum": [
+            "none",
+            "simple",
+            "viseme"
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "motion": {
+      "type": "object",
+      "properties": {
+        "energy": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "posture_spine": {
+          "type": "number"
+        },
+        "posture_neck": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "voice": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/id_voc"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "distinguishing_features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$"
+          },
+          "remove": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "add": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "applies_to": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "appearances": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id_shot"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "id",
+    "name",
+    "version",
+    "status",
+    "identity",
+    "body",
+    "palette",
+    "components",
+    "distinguishing_features"
+  ],
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x_": {}
+  }
+}

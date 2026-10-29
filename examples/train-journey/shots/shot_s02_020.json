@@ -1,0 +1,25 @@
+{
+  "schema": "kage.shot/1", "id": "shot_s02_020", "scene": "scn_02", "version": "1.0.0", "status": "approved",
+  "covers": ["evt_06", "evt_07"],
+  "purpose": "Lila watches the hills, then turns to Maya and asks her question (the emotional turn).",
+  "duration_s": 4.6, "timing": {"flex": true, "max_s": 6.0},
+  "cast": [
+    {"character": "chr_maya", "z": 0.0, "start": {"x": "@seat_maya", "facing": "right", "posture": "sit", "seat_y": "@seat_maya"}, "actions": [
+      {"type": "look", "start": 1.6, "duration": 3.0, "hold": true, "target": {"character": "chr_lila", "joint": "head"}}
+    ]},
+    {"character": "chr_lila", "z": 0.2, "start": {"x": "@seat_lila", "facing": "right", "posture": "sit", "seat_y": "@seat_lila"}, "actions": [
+      {"type": "look", "start": 0.0, "duration": 1.3, "blend_in": 0.01, "target": [2.2, 2.2]},
+      {"type": "turn", "start": 1.3, "duration": 0.45, "facing": "left"}
+    ]}
+  ],
+  "props": [],
+  "camera": {
+    "framing": "medium", "subjects": ["chr_maya", "chr_lila"], "angle": "eye", "move": {"type": "static"},
+    "variants": {"9:16": {"framing": "medium", "subjects": ["chr_maya", "chr_lila"]}}
+  },
+  "dialogue": ["line_002"],
+  "transition_in": {"type": "cut"},
+  "transition_out": {"type": "cut"},
+  "continuity": {"offscreen": ["chr_conductor"], "entrances": [], "exits": []},
+  "framing": {"allow_partial": ["inst_wall", "inst_view_hills", "inst_view_trees", "inst_bench"]}
+}

@@ -1,0 +1,27 @@
+{
+  "schema": "kage.location/1",
+  "id": "loc_countryside",
+  "name": "Hills at sunset (exterior, moving train)",
+  "version": "1.0.0",
+  "status": "approved",
+  "background": "sky_dusk",
+  "ground_y": 0,
+  "layers": [
+    {"id": "sky", "order": 0, "parallax": 0.0, "depth": 400},
+    {"id": "far", "order": 1, "parallax": 0.15, "depth": 60},
+    {"id": "mid", "order": 2, "parallax": 0.5, "depth": 12},
+    {"id": "near", "order": 3, "parallax": 1.0, "depth": 0},
+    {"id": "actors", "order": 4, "parallax": 1.0, "depth": 0}
+  ],
+  "instances": [
+    {"id": "inst_sun", "asset": "ast_sun", "layer": "sky", "position": [3.0, 3.6]},
+    {"id": "inst_hills_far", "asset": "ast_hills_far", "layer": "far", "position": [0, 0.6], "velocity": [-0.8, 0], "tile": {"period": 16, "count": 2}},
+    {"id": "inst_trees", "asset": "ast_tree_row", "layer": "mid", "position": [0, 0.1], "velocity": [-4.0, 0], "tile": {"period": 14, "count": 2}},
+    {"id": "inst_ground", "asset": "ast_ground", "layer": "near", "position": [0, 0]},
+    {"id": "inst_sleepers", "asset": "ast_sleepers", "layer": "near", "position": [0, 0], "velocity": [-14.0, 0], "tile": {"period": 1.2, "count": 16}, "z": 1},
+    {"id": "inst_train", "asset": "ast_train", "layer": "actors", "position": [0, 0], "important": true}
+  ],
+  "marks": {},
+  "ambience": "aud_amb_exterior",
+  "notes": "The train is static in world space; motion is conveyed by scrolling scenery (screen direction: travelling screen-right)."
+}

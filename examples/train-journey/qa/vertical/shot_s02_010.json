@@ -1,0 +1,63 @@
+{
+  "schema": "kage.qa_report/1",
+  "project_id": "prj_evening_train",
+  "stage": "shot:vertical:shot_s02_010",
+  "passed": true,
+  "checks_run": {
+    "render": 4,
+    "framing": 3,
+    "motion": 3
+  },
+  "error_count": 0,
+  "warning_count": 4,
+  "issues": [
+    {
+      "severity": "info",
+      "category": "render",
+      "ref": "shot_s02_010_f0000.png",
+      "message": "frame statistics",
+      "data": {
+        "width": 720,
+        "height": 1280,
+        "palette_conformity": 0.9939,
+        "luma_mean": 173.19,
+        "luma_std": 55.5
+      }
+    },
+    {
+      "severity": "info",
+      "category": "render",
+      "ref": "shot_s02_010_f0090.png",
+      "message": "frame statistics",
+      "data": {
+        "width": 720,
+        "height": 1280,
+        "palette_conformity": 0.9937,
+        "luma_mean": 154.07,
+        "luma_std": 60.58
+      }
+    },
+    {
+      "severity": "info",
+      "category": "render",
+      "ref": "shot_s02_010_f0179.png",
+      "message": "frame statistics",
+      "data": {
+        "width": 720,
+        "height": 1280,
+        "palette_conformity": 0.994,
+        "luma_mean": 155.48,
+        "luma_std": 59.75
+      }
+    },
+    {
+      "severity": "warning",
+      "category": "framing",
+      "ref": "shot_s02_010",
+      "message": "chr_lila (not a camera subject) appears with its head cut off (vertical)"
+    }
+  ],
+  "shot": "shot_s02_010",
+  "format": "vertical",
+  "backend": "OpenGL 720x1280 msaa=4 (Apple M4 / GL 4.1 Metal - 90.5)"
+}

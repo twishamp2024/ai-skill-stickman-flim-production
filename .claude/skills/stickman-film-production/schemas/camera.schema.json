@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/camera.schema.json",
+  "title": "Shot camera",
+  "type": "object",
+  "properties": {
+    "framing": {
+      "enum": [
+        "wide",
+        "medium",
+        "close",
+        "extreme_close",
+        "custom"
+      ]
+    },
+    "subjects": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id_chr"
+      }
+    },
+    "angle": {
+      "enum": [
+        "eye",
+        "high",
+        "low"
+      ]
+    },
+    "projection": {
+      "enum": [
+        "orthographic",
+        "perspective"
+      ]
+    },
+    "move": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "static",
+            "pan",
+            "zoom",
+            "follow"
+          ]
+        },
+        "to_x": {
+          "$ref": "common.schema.json#/$defs/mark_or_number"
+        },
+        "by_x": {
+          "type": "number"
+        },
+        "factor": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "character": {
+          "$ref": "common.schema.json#/$defs/id_chr"
+        },
+        "smoothing": {
+          "type": "number",
+          "minimum": 0
+        },
+        "offset_x": {
+          "type": "number"
+        },
+        "ease": {
+          "$ref": "common.schema.json#/$defs/ease"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "keys": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "t": {
+            "$ref": "common.schema.json#/$defs/seconds"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "height": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "roll": {
+            "type": "number"
+          },
+          "ease": {
+            "$ref": "common.schema.json#/$defs/ease"
+          }
+        },
+        "required": [
+          "t",
+          "x",
+          "y",
+          "height"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "variants": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "common.schema.json#/$defs/aspect"
+      },
+      "additionalProperties": {
+        "type": "object"
+      }
+    }
+  },
+  "required": [],
+  "additionalProperties": false,
+  "description": "Semantic camera; compiled to explicit keys per output format. 'height' = visible world height (m)."
+}

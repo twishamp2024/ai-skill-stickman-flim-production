@@ -1,0 +1,57 @@
+{
+  "schema": "kage.qa_report/1",
+  "project_id": "prj_evening_train",
+  "stage": "shot:vertical:shot_s02_020",
+  "passed": true,
+  "checks_run": {
+    "render": 4,
+    "framing": 2,
+    "motion": 2
+  },
+  "error_count": 0,
+  "warning_count": 3,
+  "issues": [
+    {
+      "severity": "info",
+      "category": "render",
+      "ref": "shot_s02_020_f0000.png",
+      "message": "frame statistics",
+      "data": {
+        "width": 720,
+        "height": 1280,
+        "palette_conformity": 0.9938,
+        "luma_mean": 138.95,
+        "luma_std": 62.18
+      }
+    },
+    {
+      "severity": "info",
+      "category": "render",
+      "ref": "shot_s02_020_f0055.png",
+      "message": "frame statistics",
+      "data": {
+        "width": 720,
+        "height": 1280,
+        "palette_conformity": 0.9945,
+        "luma_mean": 145.13,
+        "luma_std": 63.84
+      }
+    },
+    {
+      "severity": "info",
+      "category": "render",
+      "ref": "shot_s02_020_f0109.png",
+      "message": "frame statistics",
+      "data": {
+        "width": 720,
+        "height": 1280,
+        "palette_conformity": 0.9948,
+        "luma_mean": 153.33,
+        "luma_std": 64.24
+      }
+    }
+  ],
+  "shot": "shot_s02_020",
+  "format": "vertical",
+  "backend": "OpenGL 720x1280 msaa=4 (Apple M4 / GL 4.1 Metal - 90.5)"
+}

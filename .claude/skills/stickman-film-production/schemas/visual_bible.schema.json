@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/visual_bible.schema.json",
+  "title": "Visual bible",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "kage.visual_bible/1"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/semver"
+    },
+    "status": {
+      "$ref": "common.schema.json#/$defs/status"
+    },
+    "component_library_version": {
+      "$ref": "common.schema.json#/$defs/semver"
+    },
+    "age_profiles_version": {
+      "$ref": "common.schema.json#/$defs/semver"
+    },
+    "coordinates": {
+      "type": "object"
+    },
+    "style": {
+      "type": "object",
+      "properties": {
+        "body_line_width": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 0.2
+        },
+        "cap": {
+          "enum": [
+            "butt",
+            "round",
+            "square"
+          ]
+        },
+        "join": {
+          "enum": [
+            "miter",
+            "round",
+            "bevel"
+          ]
+        },
+        "outline_width": {
+          "type": "number"
+        },
+        "fills": {
+          "type": "string"
+        },
+        "transparency": {
+          "type": "string"
+        },
+        "head_shape": {
+          "type": "string"
+        },
+        "face": {
+          "type": "string"
+        },
+        "max_palette_colors_per_location": {
+          "type": "integer"
+        },
+        "lineup_background": {
+          "$ref": "common.schema.json#/$defs/palette_name"
+        }
+      },
+      "required": [
+        "body_line_width"
+      ],
+      "additionalProperties": true
+    },
+    "palette": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z][a-z0-9_]*$": {
+          "$ref": "common.schema.json#/$defs/hex_color"
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 2
+    },
+    "layering": {
+      "type": "object"
+    },
+    "camera_conventions": {
+      "type": "object",
+      "properties": {
+        "default_projection": {
+          "enum": [
+            "orthographic",
+            "perspective"
+          ]
+        },
+        "framings": {
+          "type": "object"
+        },
+        "safe_area": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 1
+        },
+        "screen_direction": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "approval": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "status",
+    "style",
+    "palette"
+  ],
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x_": {}
+  }
+}

@@ -1,0 +1,606 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/common.schema.json",
+  "title": "Kage shared definitions",
+  "description": "Units: metres (y up), seconds, degrees (positive = forward/flexion), sRGB hex colors, rational frame rates.",
+  "$defs": {
+    "semver": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "review",
+        "approved",
+        "locked"
+      ]
+    },
+    "id_chr": {
+      "type": "string",
+      "pattern": "^chr_[a-z0-9_]+$"
+    },
+    "id_voc": {
+      "type": "string",
+      "pattern": "^voc_[a-z0-9_]+$"
+    },
+    "id_ast": {
+      "type": "string",
+      "pattern": "^ast_[a-z0-9_]+$"
+    },
+    "id_loc": {
+      "type": "string",
+      "pattern": "^loc_[a-z0-9_]+$"
+    },
+    "id_scn": {
+      "type": "string",
+      "pattern": "^scn_[a-z0-9_]+$"
+    },
+    "id_shot": {
+      "type": "string",
+      "pattern": "^shot_[a-z0-9_]+$"
+    },
+    "id_line": {
+      "type": "string",
+      "pattern": "^line_[a-z0-9_]+$"
+    },
+    "id_evt": {
+      "type": "string",
+      "pattern": "^evt_[a-z0-9_]+$"
+    },
+    "id_aud": {
+      "type": "string",
+      "pattern": "^aud_[a-z0-9_]+$"
+    },
+    "id_inst": {
+      "type": "string",
+      "pattern": "^(inst|prop)_[a-z0-9_]+$"
+    },
+    "palette_name": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "description": "Name of a color in the visual bible palette"
+    },
+    "hex_color": {
+      "type": "string",
+      "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$",
+      "description": "sRGB, straight alpha"
+    },
+    "vec2": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "[x, y] in metres (y up)"
+    },
+    "rational": {
+      "type": "object",
+      "properties": {
+        "num": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "den": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "num"
+      ],
+      "additionalProperties": false
+    },
+    "seconds": {
+      "type": "number",
+      "minimum": 0,
+      "description": "seconds"
+    },
+    "mark_or_number": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "string",
+          "pattern": "^@[a-z0-9_]+$"
+        }
+      ],
+      "description": "metres, or '@mark' from the location"
+    },
+    "ease": {
+      "enum": [
+        "linear",
+        "in",
+        "out",
+        "in_out",
+        "step"
+      ]
+    },
+    "aspect": {
+      "enum": [
+        "16:9",
+        "9:16",
+        "4:5",
+        "5:4",
+        "1:1"
+      ]
+    },
+    "transition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "cut",
+            "fade",
+            "dissolve"
+          ]
+        },
+        "duration_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "color": {
+          "$ref": "common.schema.json#/$defs/hex_color"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "fade",
+                  "dissolve"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "duration_s"
+            ]
+          }
+        }
+      ]
+    },
+    "joint": {
+      "enum": [
+        "pelvis",
+        "chest",
+        "neck",
+        "head",
+        "shoulder_l",
+        "elbow_l",
+        "hand_l",
+        "shoulder_r",
+        "elbow_r",
+        "hand_r",
+        "hip_l",
+        "knee_l",
+        "ankle_l",
+        "toe_l",
+        "hip_r",
+        "knee_r",
+        "ankle_r",
+        "toe_r"
+      ]
+    },
+    "point_ref": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/vec2"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "bind": {
+              "$ref": "#/$defs/joint"
+            },
+            "p": {
+              "$ref": "#/$defs/vec2"
+            }
+          },
+          "required": [
+            "bind",
+            "p"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "primitive": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "polygon",
+            "polyline",
+            "circle",
+            "ellipse",
+            "rect",
+            "bone"
+          ]
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/point_ref"
+          }
+        },
+        "holes": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/point_ref"
+            },
+            "minItems": 3
+          }
+        },
+        "closed": {
+          "type": "boolean"
+        },
+        "center": {
+          "$ref": "#/$defs/vec2"
+        },
+        "radius": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "rx": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "ry": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "rotation": {
+          "type": "number"
+        },
+        "min": {
+          "$ref": "#/$defs/vec2"
+        },
+        "max": {
+          "$ref": "#/$defs/vec2"
+        },
+        "from": {
+          "$ref": "#/$defs/joint"
+        },
+        "to": {
+          "$ref": "#/$defs/joint"
+        },
+        "t0": {
+          "type": "number"
+        },
+        "t1": {
+          "type": "number"
+        },
+        "bind": {
+          "$ref": "#/$defs/joint"
+        },
+        "fill": {
+          "type": "string"
+        },
+        "stroke": {
+          "type": "string"
+        },
+        "stroke_width": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "cap": {
+          "enum": [
+            "butt",
+            "round",
+            "square"
+          ]
+        },
+        "join": {
+          "enum": [
+            "miter",
+            "round",
+            "bevel"
+          ]
+        },
+        "z": {
+          "type": "number"
+        },
+        "tag": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "anyOf": [
+        {
+          "required": [
+            "fill"
+          ]
+        },
+        {
+          "required": [
+            "stroke"
+          ]
+        }
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "polygon"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "points"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "polyline"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "points",
+              "stroke"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "circle"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "radius"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "ellipse"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "rx",
+              "ry"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "rect"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "min",
+              "max"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "bone"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "from",
+              "to",
+              "stroke",
+              "stroke_width"
+            ]
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "stroke"
+            ]
+          },
+          "then": {
+            "required": [
+              "stroke_width"
+            ]
+          }
+        }
+      ],
+      "description": "Authored with palette names (project files) or hex colors (engine scenes)."
+    },
+    "anim": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "oscillate",
+            "spin",
+            "bob"
+          ]
+        },
+        "amplitude": {
+          "type": "number"
+        },
+        "frequency": {
+          "type": "number",
+          "minimum": 0
+        },
+        "phase": {
+          "type": "number"
+        },
+        "deg_per_sec": {
+          "type": "number"
+        },
+        "axis": {
+          "$ref": "#/$defs/vec2"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "part": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "pivot": {
+          "$ref": "#/$defs/vec2"
+        },
+        "anim": {
+          "$ref": "#/$defs/anim"
+        },
+        "primitives": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/primitive"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "primitives"
+      ],
+      "additionalProperties": false
+    },
+    "tile": {
+      "type": "object",
+      "properties": {
+        "period": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        }
+      },
+      "required": [
+        "period"
+      ],
+      "additionalProperties": false
+    },
+    "transform_key": {
+      "type": "object",
+      "properties": {
+        "t": {
+          "type": "number",
+          "minimum": 0
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "rotation": {
+          "type": "number"
+        },
+        "scale": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "ease": {
+          "$ref": "#/$defs/ease"
+        }
+      },
+      "required": [
+        "t"
+      ],
+      "additionalProperties": false
+    },
+    "anchor": {
+      "type": "object",
+      "properties": {
+        "shot": {
+          "$ref": "#/$defs/id_shot"
+        },
+        "offset_s": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "const": "end"
+            }
+          ]
+        }
+      },
+      "required": [
+        "shot"
+      ],
+      "additionalProperties": false
+    },
+    "qa_issue": {
+      "type": "object",
+      "properties": {
+        "severity": {
+          "enum": [
+            "error",
+            "warning",
+            "info"
+          ]
+        },
+        "category": {
+          "type": "string"
+        },
+        "ref": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "suggested_fix": {
+          "type": "string"
+        },
+        "data": {}
+      },
+      "required": [
+        "severity",
+        "category",
+        "ref",
+        "message"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

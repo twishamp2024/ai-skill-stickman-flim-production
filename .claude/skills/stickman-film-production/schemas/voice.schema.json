@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/voice.schema.json",
+  "title": "Voice identity",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "kage.voice/1"
+    },
+    "id": {
+      "$ref": "common.schema.json#/$defs/id_voc"
+    },
+    "character": {
+      "$ref": "common.schema.json#/$defs/id_chr"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/semver"
+    },
+    "status": {
+      "$ref": "common.schema.json#/$defs/status"
+    },
+    "provider": {
+      "type": "string",
+      "description": "Adapter name, e.g. macos_say; others require an adapter"
+    },
+    "provider_voice": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "accent": {
+      "type": "string"
+    },
+    "perceived_age": {
+      "type": "string"
+    },
+    "style": {
+      "type": "string"
+    },
+    "pitch": {
+      "type": "object",
+      "properties": {
+        "pbas": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 127
+        }
+      },
+      "required": [],
+      "additionalProperties": true
+    },
+    "rate_wpm": {
+      "type": "number",
+      "minimum": 80,
+      "maximum": 400
+    },
+    "timbre": {
+      "type": "string"
+    },
+    "expressiveness": {
+      "type": "string"
+    },
+    "pronunciations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "settings": {
+      "type": "object"
+    },
+    "fallbacks": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "approved_sample": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "consent": {
+      "type": "string",
+      "description": "Provenance/consent; real-person cloning requires documented authorization"
+    }
+  },
+  "required": [
+    "schema",
+    "id",
+    "character",
+    "version",
+    "status",
+    "provider",
+    "provider_voice",
+    "language",
+    "consent"
+  ],
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x_": {}
+  }
+}

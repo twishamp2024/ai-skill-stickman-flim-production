@@ -1,53 +1,6 @@
-# Prerequisites
-*.d
-
-# Compiled Object files, static libraries, shared libraries
-*.slo
-*.lo
-*.o
-*.obj
-*.gch
-*.pch
-*.so
-*.dylib
-*.dll
-*.mod
-*.smod
-*.lai
-*.la
-*.a
-*.lib
-*.exe
-*.out
-*.app
-
-# Build directories
-build/
-**/build/
-cmake-build-*/
-
-# CMake temporary files
-CMakeCache.txt
-CMakeFiles/
-Makefile
-cmake_install.cmake
-install_manifest.txt
-compile_commands.json
-CTestTestfile.cmake
-Testing/
-_deps/
-
-# OS generated files
+engine/build/
+examples/*/build/
+__pycache__/
+*.pyc
+.claude/skills/stickman-film-production/engine.local.json
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# IDE files
-.vscode/
-.idea/
-*.sublime-project
-*.sublime-workspace

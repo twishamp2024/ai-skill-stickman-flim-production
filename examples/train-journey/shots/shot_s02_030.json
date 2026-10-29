@@ -1,0 +1,23 @@
+{
+  "schema": "kage.shot/1", "id": "shot_s02_030", "scene": "scn_02", "version": "1.0.0", "status": "approved",
+  "covers": ["evt_08"],
+  "purpose": "Close on Maya as she smiles and reassures Lila.",
+  "duration_s": 4.0, "timing": {"flex": true, "max_s": 5.5},
+  "cast": [
+    {"character": "chr_maya", "z": 0.0, "start": {"x": "@seat_maya", "facing": "right", "posture": "sit", "seat_y": "@seat_maya"}, "actions": [
+      {"type": "look", "start": 0.0, "duration": 4.0, "blend_in": 0.01, "hold": true, "target": {"character": "chr_lila", "joint": "head"}},
+      {"type": "gesture", "gesture": "nod", "start": 2.9, "duration": 0.8, "intensity": 0.6}
+    ]},
+    {"character": "chr_lila", "z": 0.2, "start": {"x": "@seat_lila", "facing": "left", "posture": "sit", "seat_y": "@seat_lila"}, "actions": []}
+  ],
+  "props": [],
+  "camera": {
+    "framing": "close", "subjects": ["chr_maya"], "angle": "eye", "move": {"type": "static"},
+    "variants": {"9:16": {"framing": "close", "subjects": ["chr_maya"]}}
+  },
+  "dialogue": ["line_003"],
+  "transition_in": {"type": "cut"},
+  "transition_out": {"type": "cut"},
+  "continuity": {"offscreen": ["chr_conductor"], "entrances": [], "exits": []},
+  "framing": {"allow_partial": ["chr_lila", "inst_wall", "inst_view_hills", "inst_view_trees", "inst_bench"]}
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "kage.qa_report/1",
+  "project_id": "prj_evening_train",
+  "stage": "shot:landscape:shot_s02_010",
+  "passed": true,
+  "checks_run": {
+    "render": 4,
+    "framing": 3,
+    "motion": 3
+  },
+  "error_count": 0,
+  "warning_count": 4,
+  "issues": [
+    {
+      "severity": "info",
+      "category": "render",
+      "ref": "shot_s02_010_f0000.png",
+      "message": "frame statistics",
+      "data": {
+        "width": 1280,
+        "height": 720,
+        "palette_conformity": 0.9918,
+        "luma_mean": 161.14,
+        "luma_std": 55.98
+      }
+    },
+    {
+      "severity": "info",
+      "category": "render",
+      "ref": "shot_s02_010_f0090.png",
+      "message": "frame statistics",
+      "data": {
+        "width": 1280,
+        "height": 720,
+        "palette_conformity": 0.9924,
+        "luma_mean": 162.52,
+        "luma_std": 55.89
+      }
+    },
+    {
+      "severity": "info",
+      "category": "render",
+      "ref": "shot_s02_010_f0179.png",
+      "message": "frame statistics",
+      "data": {
+        "width": 1280,
+        "height": 720,
+        "palette_conformity": 0.9924,
+        "luma_mean": 161.56,
+        "luma_std": 56.18
+      }
+    },
+    {
+      "severity": "warning",
+      "category": "framing",
+      "ref": "shot_s02_010",
+      "message": "chr_lila leaves the 90% safe area in 7% of frames (landscape)"
+    }
+  ],
+  "shot": "shot_s02_010",
+  "format": "landscape",
+  "backend": "OpenGL 1280x720 msaa=4 (Apple M4 / GL 4.1 Metal - 90.5)"
+}

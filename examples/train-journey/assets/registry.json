@@ -1,0 +1,1124 @@
+{
+  "schema": "kage.asset_registry/1",
+  "version": "1.0.0",
+  "units": "metres, asset-local; origin at the asset's ground contact point unless noted",
+  "assets": {
+    "ast_sun": {
+      "category": "environment",
+      "status": "approved",
+      "version": "1.0.0",
+      "description": "Low setting sun",
+      "primitives": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "radius": 0.9,
+          "fill": "sun"
+        }
+      ]
+    },
+    "ast_hills_far": {
+      "category": "environment",
+      "status": "approved",
+      "version": "1.0.0",
+      "description": "Rolling far hills; periodic over 16 m for seamless tiling",
+      "tileable_period": 16,
+      "primitives": [
+        {
+          "type": "polygon",
+          "fill": "hill_far",
+          "points": [
+            [
+              -8,
+              -3
+            ],
+            [
+              -8,
+              0.6
+            ],
+            [
+              -6,
+              1.3
+            ],
+            [
+              -3.5,
+              0.8
+            ],
+            [
+              -1,
+              1.9
+            ],
+            [
+              1.5,
+              1.0
+            ],
+            [
+              4,
+              1.6
+            ],
+            [
+              6.5,
+              0.9
+            ],
+            [
+              8,
+              0.6
+            ],
+            [
+              8,
+              -3
+            ]
+          ]
+        }
+      ]
+    },
+    "ast_hills_near": {
+      "category": "environment",
+      "status": "approved",
+      "version": "1.0.0",
+      "description": "Near green hills; periodic over 12 m",
+      "tileable_period": 12,
+      "primitives": [
+        {
+          "type": "polygon",
+          "fill": "hill_near",
+          "points": [
+            [
+              -6,
+              -3
+            ],
+            [
+              -6,
+              0.3
+            ],
+            [
+              -4,
+              0.75
+            ],
+            [
+              -1.5,
+              0.35
+            ],
+            [
+              1,
+              0.9
+            ],
+            [
+              3.5,
+              0.4
+            ],
+            [
+              6,
+              0.3
+            ],
+            [
+              6,
+              -3
+            ]
+          ]
+        }
+      ]
+    },
+    "ast_tree": {
+      "category": "tree",
+      "status": "approved",
+      "version": "1.0.0",
+      "description": "Round deciduous tree with gently swaying canopy",
+      "primitives": [
+        {
+          "type": "rect",
+          "min": [
+            -0.12,
+            0
+          ],
+          "max": [
+            0.12,
+            1.4
+          ],
+          "fill": "trunk",
+          "stroke": "ink",
+          "stroke_width": 0.03
+        }
+      ],
+      "parts": [
+        {
+          "id": "canopy",
+          "pivot": [
+            0,
+            1.3
+          ],
+          "anim": {
+            "type": "oscillate",
+            "amplitude": 2.5,
+            "frequency": 0.35
+          },
+          "primitives": [
+            {
+              "type": "circle",
+              "center": [
+                -0.45,
+                1.75
+              ],
+              "radius": 0.6,
+              "fill": "tree_green",
+              "stroke": "ink",
+              "stroke_width": 0.03
+            },
+            {
+              "type": "circle",
+              "center": [
+                0.45,
+                1.8
+              ],
+              "radius": 0.58,
+              "fill": "tree_green",
+              "stroke": "ink",
+              "stroke_width": 0.03
+            },
+            {
+              "type": "circle",
+              "center": [
+                0,
+                2.3
+              ],
+              "radius": 0.65,
+              "fill": "tree_green",
+              "stroke": "ink",
+              "stroke_width": 0.03
+            }
+          ]
+        }
+      ]
+    },
+    "ast_tree_row": {
+      "category": "tree",
+      "status": "approved",
+      "version": "1.0.0",
+      "description": "Three trees spaced over a 14 m tile (instances of the tree silhouette, scaled)",
+      "tileable_period": 14,
+      "composed_of": [
+        "ast_tree"
+      ],
+      "primitives": [],
+      "parts": [
+        {
+          "id": "t1",
+          "pivot": [
+            -4.5,
+            1.3
+          ],
+          "anim": {
+            "type": "oscillate",
+            "amplitude": 2.0,
+            "frequency": 0.33
+          },
+          "primitives": [
+            {
+              "type": "rect",
+              "min": [
+                -4.62,
+                0
+              ],
+              "max": [
+                -4.38,
+                1.4
+              ],
+              "fill": "trunk"
+            },
+            {
+              "type": "circle",
+              "center": [
+                -4.5,
+                2.0
+              ],
+              "radius": 0.85,
+              "fill": "tree_green",
+              "stroke": "ink",
+              "stroke_width": 0.03
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "pivot": [
+            0.5,
+            1.3
+          ],
+          "anim": {
+            "type": "oscillate",
+            "amplitude": 2.0,
+            "frequency": 0.29,
+            "phase": 0.3
+          },
+          "primitives": [
+            {
+              "type": "rect",
+              "min": [
+                0.38,
+                0
+              ],
+              "max": [
+                0.62,
+                1.1
+              ],
+              "fill": "trunk"
+            },
+            {
+              "type": "circle",
+              "center": [
+                0.5,
+                1.65
+              ],
+              "radius": 0.7,
+              "fill": "tree_green",
+              "stroke": "ink",
+              "stroke_width": 0.03
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "pivot": [
+            4.2,
+            1.3
+          ],
+          "anim": {
+            "type": "oscillate",
+            "amplitude": 2.0,
+            "frequency": 0.37,
+            "phase": 0.6
+          },
+          "primitives": [
+            {
+              "type": "rect",
+              "min": [
+                4.08,
+                0
+              ],
+              "max": [
+                4.32,
+                1.6
+              ],
+              "fill": "trunk"
+            },
+            {
+              "type": "circle",
+              "center": [
+                4.2,
+                2.3
+              ],
+              "radius": 0.95,
+              "fill": "tree_green",
+              "stroke": "ink",
+              "stroke_width": 0.03
+            }
+          ]
+        }
+      ]
+    },
+    "ast_ground": {
+      "category": "environment",
+      "status": "approved",
+      "version": "1.0.0",
+      "description": "Grass ground strip with rail bed",
+      "primitives": [
+        {
+          "type": "rect",
+          "min": [
+            -40,
+            -6
+          ],
+          "max": [
+            40,
+            -0.05
+          ],
+          "fill": "grass"
+        },
+        {
+          "type": "rect",
+          "min": [
+            -40,
+            -0.35
+          ],
+          "max": [
+            40,
+            -0.05
+          ],
+          "fill": "rail"
+        }
+      ]
+    },
+    "ast_sleepers": {
+      "category": "environment",
+      "status": "approved",
+      "version": "1.0.0",
+      "description": "Rail sleepers, periodic over 1.2 m",
+      "tileable_period": 1.2,
+      "primitives": [
+        {
+          "type": "rect",
+          "min": [
+            -0.12,
+            -0.3
+          ],
+          "max": [
+            0.12,
+            -0.1
+          ],
+          "fill": "trunk"
+        }
+      ]
+    },
+    "ast_bird": {
+      "category": "bird",
+      "status": "approved",
+      "version": "1.0.0",
+      "description": "Small bird in flight, flapping wings",
+      "primitives": [
+        {
+          "type": "ellipse",
+          "center": [
+            0,
+            0
+          ],
+          "rx": 0.16,
+          "ry": 0.07,
+          "fill": "ink"
+        }
+      ],
+      "parts": [
+        {
+          "id": "wing_far",
+          "pivot": [
+            0,
+            0.02
+          ],
+          "anim": {
+            "type": "oscillate",
+            "amplitude": 35,
+            "frequency": 3.2,
+            "phase": 0.5
+          },
+          "primitives": [
+            {
+              "type": "polygon",
+              "points": [
+                [
+                  -0.04,
+                  0.02
+                ],
+                [
+                  0.06,
+                  0.02
+                ],
+                [
+                  -0.02,
+                  0.26
+                ]
+              ],
+              "fill": "ink"
+            }
+          ]
+        },
+        {
+          "id": "wing_near",
+          "pivot": [
+            0,
+            0.02
+          ],
+          "anim": {
+            "type": "oscillate",
+            "amplitude": 40,
+            "frequency": 3.2
+          },
+          "primitives": [
+            {
+              "type": "polygon",
+              "points": [
+                [
+                  -0.06,
+                  0.02
+                ],
+                [
+                  0.05,
+                  0.02
+                ],
+                [
+                  -0.1,
+                  0.3
+                ]
+              ],
+              "fill": "ink"
+            }
+          ]
+        }
+      ]
+    },
+    "ast_train": {
+      "category": "vehicle",
+      "status": "approved",
+      "version": "1.0.0",
+      "description": "Two-car passenger train in side view: locomotive (right, direction of travel) and one carriage with glazed windows (body is a polygon with window holes)",
+      "primitives": [
+        {
+          "type": "rect",
+          "min": [
+            -6.6,
+            0.55
+          ],
+          "max": [
+            0.6,
+            2.75
+          ],
+          "fill": "glass"
+        },
+        {
+          "type": "polygon",
+          "fill": "train_body",
+          "stroke": "ink",
+          "stroke_width": 0.05,
+          "points": [
+            [
+              -6.8,
+              0.45
+            ],
+            [
+              0.8,
+              0.45
+            ],
+            [
+              0.8,
+              2.75
+            ],
+            [
+              0.5,
+              3.0
+            ],
+            [
+              -6.5,
+              3.0
+            ],
+            [
+              -6.8,
+              2.75
+            ]
+          ],
+          "holes": [
+            [
+              [
+                -6.2,
+                1.55
+              ],
+              [
+                -4.6,
+                1.55
+              ],
+              [
+                -4.6,
+                2.45
+              ],
+              [
+                -6.2,
+                2.45
+              ]
+            ],
+            [
+              [
+                -4.2,
+                1.55
+              ],
+              [
+                -2.6,
+                1.55
+              ],
+              [
+                -2.6,
+                2.45
+              ],
+              [
+                -4.2,
+                2.45
+              ]
+            ],
+            [
+              [
+                -2.2,
+                1.55
+              ],
+              [
+                -0.6,
+                1.55
+              ],
+              [
+                -0.6,
+                2.45
+              ],
+              [
+                -2.2,
+                2.45
+              ]
+            ]
+          ]
+        },
+        {
+          "type": "rect",
+          "min": [
+            -6.8,
+            1.2
+          ],
+          "max": [
+            0.8,
+            1.35
+          ],
+          "fill": "train_trim"
+        },
+        {
+          "type": "rect",
+          "min": [
+            1.0,
+            0.55
+          ],
+          "max": [
+            3.6,
+            2.4
+          ],
+          "fill": "glass"
+        },
+        {
+          "type": "polygon",
+          "fill": "train_body",
+          "stroke": "ink",
+          "stroke_width": 0.05,
+          "points": [
+            [
+              0.95,
+              0.45
+            ],
+            [
+              4.6,
+              0.45
+            ],
+            [
+              5.2,
+              1.0
+            ],
+            [
+              5.2,
+              2.0
+            ],
+            [
+              4.4,
+              2.75
+            ],
+            [
+              0.95,
+              2.75
+            ]
+          ],
+          "holes": [
+            [
+              [
+                3.7,
+                1.7
+              ],
+              [
+                4.4,
+                1.7
+              ],
+              [
+                4.4,
+                2.35
+              ],
+              [
+                3.7,
+                2.35
+              ]
+            ]
+          ]
+        },
+        {
+          "type": "rect",
+          "min": [
+            0.95,
+            1.2
+          ],
+          "max": [
+            5.2,
+            1.35
+          ],
+          "fill": "train_trim"
+        },
+        {
+          "type": "rect",
+          "min": [
+            0.6,
+            0.9
+          ],
+          "max": [
+            1.15,
+            1.05
+          ],
+          "fill": "ink"
+        },
+        {
+          "type": "rect",
+          "min": [
+            4.85,
+            1.45
+          ],
+          "max": [
+            5.25,
+            1.75
+          ],
+          "fill": "train_trim",
+          "stroke": "ink",
+          "stroke_width": 0.03
+        }
+      ],
+      "parts": [
+        {
+          "id": "wheel_1",
+          "pivot": [
+            -5.4,
+            0.42
+          ],
+          "anim": {
+            "type": "spin",
+            "deg_per_sec": -720
+          },
+          "primitives": [
+            {
+              "type": "circle",
+              "center": [
+                -5.4,
+                0.42
+              ],
+              "radius": 0.38,
+              "fill": "wheel"
+            },
+            {
+              "type": "polyline",
+              "points": [
+                [
+                  -5.4,
+                  0.1
+                ],
+                [
+                  -5.4,
+                  0.74
+                ]
+              ],
+              "stroke": "rail",
+              "stroke_width": 0.06
+            }
+          ]
+        },
+        {
+          "id": "wheel_2",
+          "pivot": [
+            -0.9,
+            0.42
+          ],
+          "anim": {
+            "type": "spin",
+            "deg_per_sec": -720
+          },
+          "primitives": [
+            {
+              "type": "circle",
+              "center": [
+                -0.9,
+                0.42
+              ],
+              "radius": 0.38,
+              "fill": "wheel"
+            },
+            {
+              "type": "polyline",
+              "points": [
+                [
+                  -0.9,
+                  0.1
+                ],
+                [
+                  -0.9,
+                  0.74
+                ]
+              ],
+              "stroke": "rail",
+              "stroke_width": 0.06
+            }
+          ]
+        },
+        {
+          "id": "wheel_3",
+          "pivot": [
+            2.0,
+            0.42
+          ],
+          "anim": {
+            "type": "spin",
+            "deg_per_sec": -720
+          },
+          "primitives": [
+            {
+              "type": "circle",
+              "center": [
+                2.0,
+                0.42
+              ],
+              "radius": 0.38,
+              "fill": "wheel"
+            },
+            {
+              "type": "polyline",
+              "points": [
+                [
+                  2.0,
+                  0.1
+                ],
+                [
+                  2.0,
+                  0.74
+                ]
+              ],
+              "stroke": "rail",
+              "stroke_width": 0.06
+            }
+          ]
+        },
+        {
+          "id": "wheel_4",
+          "pivot": [
+            4.0,
+            0.42
+          ],
+          "anim": {
+            "type": "spin",
+            "deg_per_sec": -720
+          },
+          "primitives": [
+            {
+              "type": "circle",
+              "center": [
+                4.0,
+                0.42
+              ],
+              "radius": 0.38,
+              "fill": "wheel"
+            },
+            {
+              "type": "polyline",
+              "points": [
+                [
+                  4.0,
+                  0.1
+                ],
+                [
+                  4.0,
+                  0.74
+                ]
+              ],
+              "stroke": "rail",
+              "stroke_width": 0.06
+            }
+          ]
+        },
+        {
+          "id": "body_rock",
+          "pivot": [
+            0,
+            0
+          ],
+          "anim": {
+            "type": "bob",
+            "amplitude": 0.015,
+            "frequency": 1.6,
+            "axis": [
+              0,
+              1
+            ]
+          },
+          "primitives": [
+            {
+              "type": "rect",
+              "min": [
+                -6.6,
+                3.0
+              ],
+              "max": [
+                0.4,
+                3.12
+              ],
+              "fill": "train_trim"
+            }
+          ]
+        }
+      ]
+    },
+    "ast_carriage_wall": {
+      "category": "architecture",
+      "status": "approved",
+      "version": "1.0.0",
+      "description": "Carriage far wall with three wide windows (polygon with holes) and luggage rack",
+      "primitives": [
+        {
+          "type": "polygon",
+          "fill": "wall",
+          "stroke": "ink",
+          "stroke_width": 0.03,
+          "points": [
+            [
+              -7,
+              -0.05
+            ],
+            [
+              7,
+              -0.05
+            ],
+            [
+              7,
+              6.0
+            ],
+            [
+              -7,
+              6.0
+            ]
+          ],
+          "holes": [
+            [
+              [
+                -4.4,
+                1.15
+              ],
+              [
+                -2.0,
+                1.15
+              ],
+              [
+                -2.0,
+                2.15
+              ],
+              [
+                -4.4,
+                2.15
+              ]
+            ],
+            [
+              [
+                -1.4,
+                1.15
+              ],
+              [
+                1.6,
+                1.15
+              ],
+              [
+                1.6,
+                2.15
+              ],
+              [
+                -1.4,
+                2.15
+              ]
+            ],
+            [
+              [
+                2.2,
+                1.15
+              ],
+              [
+                4.6,
+                1.15
+              ],
+              [
+                4.6,
+                2.15
+              ],
+              [
+                2.2,
+                2.15
+              ]
+            ]
+          ]
+        },
+        {
+          "type": "polyline",
+          "closed": true,
+          "points": [
+            [
+              -4.45,
+              1.1
+            ],
+            [
+              -1.95,
+              1.1
+            ],
+            [
+              -1.95,
+              2.2
+            ],
+            [
+              -4.45,
+              2.2
+            ]
+          ],
+          "stroke": "frame_wood",
+          "stroke_width": 0.07,
+          "join": "miter"
+        },
+        {
+          "type": "polyline",
+          "closed": true,
+          "points": [
+            [
+              -1.45,
+              1.1
+            ],
+            [
+              1.65,
+              1.1
+            ],
+            [
+              1.65,
+              2.2
+            ],
+            [
+              -1.45,
+              2.2
+            ]
+          ],
+          "stroke": "frame_wood",
+          "stroke_width": 0.07,
+          "join": "miter"
+        },
+        {
+          "type": "polyline",
+          "closed": true,
+          "points": [
+            [
+              2.15,
+              1.1
+            ],
+            [
+              4.65,
+              1.1
+            ],
+            [
+              4.65,
+              2.2
+            ],
+            [
+              2.15,
+              2.2
+            ]
+          ],
+          "stroke": "frame_wood",
+          "stroke_width": 0.07,
+          "join": "miter"
+        },
+        {
+          "type": "rect",
+          "min": [
+            -7,
+            2.45
+          ],
+          "max": [
+            7,
+            2.52
+          ],
+          "fill": "frame_wood"
+        },
+        {
+          "type": "rect",
+          "min": [
+            -7,
+            -3.0
+          ],
+          "max": [
+            7,
+            -0.05
+          ],
+          "fill": "floor"
+        },
+        {
+          "type": "rect",
+          "min": [
+            -7,
+            2.95
+          ],
+          "max": [
+            7,
+            6.0
+          ],
+          "fill": "frame_wood"
+        },
+        {
+          "type": "rect",
+          "min": [
+            -7,
+            2.95
+          ],
+          "max": [
+            7,
+            3.02
+          ],
+          "fill": "ink"
+        }
+      ]
+    },
+    "ast_bench": {
+      "category": "furniture",
+      "status": "approved",
+      "version": "1.0.0",
+      "description": "Long upholstered window bench, seat top at y = 0.45 m",
+      "primitives": [
+        {
+          "type": "rect",
+          "min": [
+            -0.9,
+            0.47
+          ],
+          "max": [
+            1.6,
+            1.0
+          ],
+          "fill": "seat",
+          "stroke": "ink",
+          "stroke_width": 0.03
+        },
+        {
+          "type": "rect",
+          "min": [
+            -0.95,
+            0.36
+          ],
+          "max": [
+            1.65,
+            0.47
+          ],
+          "fill": "seat",
+          "stroke": "ink",
+          "stroke_width": 0.03
+        },
+        {
+          "type": "rect",
+          "min": [
+            -0.85,
+            0.0
+          ],
+          "max": [
+            1.55,
+            0.36
+          ],
+          "fill": "seat_dark",
+          "stroke": "ink",
+          "stroke_width": 0.03
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "kage.character/1",
+  "id": "chr_conductor",
+  "name": "The conductor",
+  "version": "1.0.0",
+  "status": "approved",
+  "role": "railway conductor (minor)",
+  "relationships": [],
+  "identity": {
+    "gender_identity": "not stated in story",
+    "presentation": "neutral",
+    "pronouns": "they/them (story does not specify)",
+    "age_category": "older_adult",
+    "age_years": 63
+  },
+  "body": {"height_m": 1.68, "build": "broad", "proportion_overrides": {}},
+  "palette": {"line": "ink", "head_fill": "paper", "hair": "hair_grey", "top": "navy", "bottom": "navy", "shoes": "ink", "accessory": "navy"},
+  "components": [
+    {"id": "hair.short_crop"},
+    {"id": "acc.uniform_cap"},
+    {"id": "acc.glasses"},
+    {"id": "top.long_sleeve"},
+    {"id": "bottom.trousers"},
+    {"id": "shoes.basic"}
+  ],
+  "face": {"enabled": true, "style": "profile"},
+  "motion": {"energy": 1.0},
+  "voice": "voc_conductor",
+  "distinguishing_features": ["navy uniform cap with visor", "glasses", "broad build", "slight stoop (older adult posture)"],
+  "variants": []
+}

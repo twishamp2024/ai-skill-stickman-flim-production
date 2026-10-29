@@ -1,70 +1,51 @@
-# ai-skill-stickman-flim-production
+# Project Kage — stickman film production skill
 
-AI-driven stickman film production system and rendering engine.
+An Agent Skill plus a C++/OpenGL engine that turn a complete story into a coherent, animated
+stickman film: story analysis → shot plan → locked character identities → animatic → rendered
+shots with voices, sound and music → QA → multi-format delivery.
 
-## Overview
+| Part | Location | What it is |
+|---|---|---|
+| Agent Skill | [`.claude/skills/stickman-film-production/`](.claude/skills/stickman-film-production/SKILL.md) | workflow, rules, 20 JSON Schemas, component library, `kage.py` tools, templates, reference docs |
+| Engine | [`engine/`](engine/) | `kage_render`: C++17, deterministic rig/motion/tessellation, OpenGL 3.3 + software backends |
+| Example film | [`examples/train-journey/`](examples/train-journey/) | "The Evening Train": mother and child on a train, 16:9 + 9:16 |
+| Tests | [`tests/`](tests/), [`engine/tests/`](engine/tests/) | Python unittest suite, engine unit tests |
+| Status | [`STATUS.md`](STATUS.md) | what is implemented, tested, and not, with evidence |
 
-This repository contains the core animation, geometry, rigging, motion, and rendering engine (`kage_engine`) designed for procedural and scripted 2D/stylized stickman animation and film production.
+## Requirements
+Python ≥ 3.9 (stdlib only) · CMake ≥ 3.16 + a C++17 compiler · FFmpeg ≥ 7 with libx264, AAC,
+FFV1 · optional GLFW ≥ 3.3 for the OpenGL backend · optional macOS `say` for the bundled voice
+adapter. Verified on macOS 26.6 (Apple M4, Apple clang 21, CMake 4.4, FFmpeg 9.0.2, GLFW 3.5.1).
 
-## Features
-
-- **Rendering Engine (`kage_render`)**:
-  - Software rasterizer with supersampling (SSAA)
-  - Hardware-accelerated OpenGL rasterizer with MSAA (via GLFW)
-  - Frame export to PNG sequences, raw RGB24 video streams (for FFmpeg pipes), and probe metrics
-  - Multiple visual styles: `final`, `flat`, `silhouette`
-- **Animation & Motion**:
-  - Hierarchical skeletal rigging and joint transforms
-  - Keyframe interpolation, easing, and procedural motion
-  - Collision, posture, and framing probes
-  - Event triggers (footsteps, attachments, contacts)
-- **JSON Scene Specification**:
-  - Declarative scene definition format
-  - Frame-by-frame validation and summary analysis
-
-## Building
-
-### Prerequisites
-
-- C++17 compatible compiler (Clang, GCC, or MSVC)
-- CMake 3.16 or higher
-- Optional: GLFW 3.3+ for hardware OpenGL acceleration
-
-### Build Instructions
-
+## Install
 ```bash
-cd engine
-mkdir -p build && cd build
-cmake ..
-cmake --build .
+./install.sh
 ```
-
-### Running Tests
-
+This builds and tests the engine. The skill is discoverable automatically when Claude Code runs in this
+repository (project skill). To use it in every project:
 ```bash
-cd engine/build
-ctest --output-on-failure
-# or run the test binary directly:
-./kage_tests
+./install.sh --user
 ```
+That command symlinks the skill into `~/.claude/skills/`. Other agents: point them at `SKILL.md`; all tooling is
+`python3 .claude/skills/stickman-film-production/scripts/kage.py <command>`.
 
-## CLI Usage
+## Invoke
+Ask the agent, e.g. *"Make a 40-second stickman film of this story, 9:16 for Reels: …"*. The skill
+is selected by its description. You can also say "use the stickman-film-production skill".
 
+## Reproduce the example
 ```bash
-./kage_render SCENE.json [options]
+K=.claude/skills/stickman-film-production/scripts/kage.py
+python3 $K doctor examples/train-journey
+python3 $K validate examples/train-journey
+python3 $K animatic examples/train-journey
+python3 $K run examples/train-journey
 ```
+The run writes `examples/train-journey/output/the_evening_train_{landscape,vertical}.mp4`,
+`output/delivery.json`, `qa/**`. Once built, the full run takes about 25 s on an M4; a re-run with no changes takes 0.03 s.
 
-Options:
-- `--info`: Print scene summary JSON and exit.
-- `--validate`: Validate scene and geometry for every frame without rasterization.
-- `--backend auto|gl|soft`: Select rasterizer (software or OpenGL).
-- `--ssaa N`: Software supersampling factor (default: 3).
-- `--msaa N`: OpenGL multisample count (default: 8).
-- `--style final|flat|silhouette`: Visual rendering style.
-- `--frames A:B`: Frame range `[A, B)`.
-- `--frame N`: Render a single frame.
-- `--png PATH`: Write the first rendered frame as PNG.
-- `--png-dir DIR`: Write sequence as `DIR/frame_NNNNN.png`.
-- `--raw PATH|-`: Stream frames as raw rgb24 (for piping to FFmpeg).
-- `--probe PATH`: Export per-frame probe JSON metrics.
-- `--events PATH`: Export animation events JSON.
+## Tests
+```bash
+cmake --build engine/build && ctest --test-dir engine/build --output-on-failure
+cd tests && python3 -m unittest -v
+```

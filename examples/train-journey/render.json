@@ -1,0 +1,12 @@
+{
+  "schema": "kage.render_config/1",
+  "version": "1.0.0",
+  "backend": "auto",
+  "ssaa": 3,
+  "msaa": 8,
+  "intermediate": {"codec": "ffv1", "container": "mkv", "pixel_format": "bgr0"},
+  "animatic": {"width": 480, "fps": {"num": 12, "den": 1}, "style": "flat"},
+  "concurrency": {"gpu": 2, "cpu": 4},
+  "retries": {"max_attempts": 3, "backoff_s": 0.5},
+  "timeout_s": 900
+}

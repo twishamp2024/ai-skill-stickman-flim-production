@@ -1,0 +1,22 @@
+{
+  "schema": "kage.voice/1",
+  "id": "voc_conductor",
+  "character": "chr_conductor",
+  "version": "1.0.0",
+  "status": "approved",
+  "provider": "macos_say",
+  "provider_voice": "Reed (English (US))",
+  "language": "en-US",
+  "accent": "General American",
+  "perceived_age": "older adult",
+  "style": "friendly, brisk",
+  "pitch": {"pbas": 40},
+  "rate_wpm": 170,
+  "timbre": "lower, slightly worn",
+  "expressiveness": "low (provider exposes rate, volume, pitch base and pauses only)",
+  "pronunciations": {},
+  "settings": {},
+  "fallbacks": [],
+  "approved_sample": null,
+  "consent": "synthetic system voice; not a clone of any real person"
+}

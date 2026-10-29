@@ -1,0 +1,57 @@
+{
+  "schema": "kage.qa_report/1",
+  "project_id": "prj_evening_train",
+  "stage": "shot:landscape:shot_s02_020",
+  "passed": true,
+  "checks_run": {
+    "render": 4,
+    "framing": 2,
+    "motion": 2
+  },
+  "error_count": 0,
+  "warning_count": 3,
+  "issues": [
+    {
+      "severity": "info",
+      "category": "render",
+      "ref": "shot_s02_020_f0000.png",
+      "message": "frame statistics",
+      "data": {
+        "width": 1280,
+        "height": 720,
+        "palette_conformity": 0.9943,
+        "luma_mean": 131.61,
+        "luma_std": 56.93
+      }
+    },
+    {
+      "severity": "info",
+      "category": "render",
+      "ref": "shot_s02_020_f0055.png",
+      "message": "frame statistics",
+      "data": {
+        "width": 1280,
+        "height": 720,
+        "palette_conformity": 0.9943,
+        "luma_mean": 136.22,
+        "luma_std": 59.36
+      }
+    },
+    {
+      "severity": "info",
+      "category": "render",
+      "ref": "shot_s02_020_f0109.png",
+      "message": "frame statistics",
+      "data": {
+        "width": 1280,
+        "height": 720,
+        "palette_conformity": 0.9947,
+        "luma_mean": 141.07,
+        "luma_std": 60.1
+      }
+    }
+  ],
+  "shot": "shot_s02_020",
+  "format": "landscape",
+  "backend": "OpenGL 1280x720 msaa=4 (Apple M4 / GL 4.1 Metal - 90.5)"
+}

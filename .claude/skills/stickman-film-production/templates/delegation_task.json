@@ -1,0 +1,50 @@
+{
+  "task_id": "dlg_<role>_<short-id>",
+  "role": "cinematography | character_design | environment | audio | voice | qa_repair | assembly",
+  "project": "<path to project>",
+  "instructions": "One paragraph: the goal and the creative intent, in your own words.",
+  "inputs": [
+    {
+      "path": "bible/visual_bible.json",
+      "version": "1.0.0"
+    },
+    {
+      "path": "characters/chr_x.json",
+      "version": "1.0.0"
+    }
+  ],
+  "schema_versions": {
+    "shot": "kage.shot/1",
+    "character": "kage.character/1"
+  },
+  "allowed_writes": [
+    "shots/shot_s03_010.json"
+  ],
+  "forbidden": [
+    "bible/**",
+    "characters/** (unless assigned)",
+    "library/**",
+    "engine/**",
+    "build/**",
+    "output/**"
+  ],
+  "outputs": [
+    "shots/shot_s03_010.json"
+  ],
+  "dependencies": [
+    "dlg_story_brief"
+  ],
+  "validation": "python3 <skill>/scripts/kage.py validate <project> --draft  (must report 0 errors for the outputs)",
+  "retry_policy": {
+    "max_attempts": 2,
+    "on_validation_error": "fix and resubmit with the validator output"
+  },
+  "timeout_minutes": 30,
+  "result": {
+    "status": "pending | done | failed | needs_decision",
+    "files_changed": [],
+    "validation_output": "",
+    "open_questions": [],
+    "notes": ""
+  }
+}

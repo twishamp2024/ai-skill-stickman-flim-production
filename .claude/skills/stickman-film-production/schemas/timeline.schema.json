@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/timeline.schema.json",
+  "title": "Master timeline (generated)",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "kage.timeline/1"
+    },
+    "project_id": {
+      "type": "string"
+    },
+    "fps": {
+      "$ref": "common.schema.json#/$defs/rational"
+    },
+    "total_frames": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "duration_s": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "shots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id_shot"
+          },
+          "scene": {
+            "$ref": "common.schema.json#/$defs/id_scn"
+          },
+          "location": {
+            "$ref": "common.schema.json#/$defs/id_loc"
+          },
+          "start_frame": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "frames": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "start_s": {
+            "$ref": "common.schema.json#/$defs/seconds"
+          },
+          "duration_s": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "transition_in": {
+            "$ref": "common.schema.json#/$defs/transition"
+          },
+          "transition_out": {
+            "$ref": "common.schema.json#/$defs/transition"
+          }
+        },
+        "required": [
+          "id",
+          "start_frame",
+          "frames",
+          "start_s",
+          "duration_s"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "audio_clips": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "stem": {
+            "enum": [
+              "dialogue",
+              "sfx",
+              "ambience",
+              "music"
+            ]
+          },
+          "kind": {
+            "type": "string"
+          },
+          "line": {
+            "type": "string"
+          },
+          "asset": {
+            "type": "string"
+          },
+          "character": {
+            "type": "string"
+          },
+          "start_s": {
+            "$ref": "common.schema.json#/$defs/seconds"
+          },
+          "duration_s": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "timing_source": {
+            "enum": [
+              "generated",
+              "estimated"
+            ]
+          },
+          "gain_db": {
+            "type": "number"
+          },
+          "fade_in_s": {
+            "type": "number"
+          },
+          "fade_out_s": {
+            "type": "number"
+          },
+          "duck_under_dialogue_db": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "stem",
+          "start_s"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "subtitles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "line": {
+            "$ref": "common.schema.json#/$defs/id_line"
+          },
+          "start_s": {
+            "$ref": "common.schema.json#/$defs/seconds"
+          },
+          "end_s": {
+            "$ref": "common.schema.json#/$defs/seconds"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "line",
+          "start_s",
+          "end_s",
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "adjustments": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "line_timing": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "fps",
+    "total_frames",
+    "duration_s",
+    "shots",
+    "audio_clips",
+    "errors"
+  ],
+  "additionalProperties": false
+}

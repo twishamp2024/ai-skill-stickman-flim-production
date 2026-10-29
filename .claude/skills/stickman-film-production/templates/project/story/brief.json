@@ -1,0 +1,26 @@
+{
+  "schema": "kage.story_brief/1",
+  "version": "0.1.0",
+  "status": "draft",
+  "source": "story/story.md",
+  "source_sha256": null,
+  "logline": "TODO",
+  "main_plot": "",
+  "subplots": [],
+  "chronology": "linear",
+  "emotional_arc": [],
+  "characters": [],
+  "offscreen_characters": [],
+  "locations": [],
+  "props": [],
+  "sound_implied": [],
+  "events": [
+    {
+      "id": "evt_01",
+      "summary": "TODO: first story event",
+      "importance": "essential"
+    }
+  ],
+  "event_to_scene": {},
+  "ambiguities": []
+}

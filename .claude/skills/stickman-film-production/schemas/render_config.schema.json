@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/render_config.schema.json",
+  "title": "Render configuration",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "kage.render_config/1"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/semver"
+    },
+    "backend": {
+      "enum": [
+        "auto",
+        "gl",
+        "soft"
+      ]
+    },
+    "ssaa": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 8
+    },
+    "msaa": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 16
+    },
+    "intermediate": {
+      "type": "object",
+      "properties": {
+        "codec": {
+          "const": "ffv1"
+        },
+        "container": {
+          "const": "mkv"
+        },
+        "pixel_format": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "animatic": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 64
+        },
+        "fps": {
+          "$ref": "common.schema.json#/$defs/rational"
+        },
+        "style": {
+          "enum": [
+            "final",
+            "flat",
+            "silhouette"
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "concurrency": {
+      "type": "object",
+      "properties": {
+        "gpu": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "cpu": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "retries": {
+      "type": "object",
+      "properties": {
+        "max_attempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "backoff_s": {
+          "$ref": "common.schema.json#/$defs/seconds"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "timeout_s": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "backend"
+  ],
+  "additionalProperties": false
+}

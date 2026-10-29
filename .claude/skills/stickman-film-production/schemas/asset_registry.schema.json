@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/asset_registry.schema.json",
+  "title": "Asset registry",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "kage.asset_registry/1"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/semver"
+    },
+    "units": {
+      "type": "string"
+    },
+    "assets": {
+      "type": "object",
+      "patternProperties": {
+        "^ast_[a-z0-9_]+$": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "enum": [
+                "character_prop",
+                "animal",
+                "bird",
+                "tree",
+                "plant",
+                "vehicle",
+                "furniture",
+                "building",
+                "architecture",
+                "environment",
+                "handheld",
+                "background",
+                "effect"
+              ]
+            },
+            "status": {
+              "$ref": "common.schema.json#/$defs/status"
+            },
+            "version": {
+              "$ref": "common.schema.json#/$defs/semver"
+            },
+            "description": {
+              "type": "string"
+            },
+            "tileable_period": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "composed_of": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/id_ast"
+              }
+            },
+            "grip": {
+              "$ref": "common.schema.json#/$defs/vec2"
+            },
+            "transparency": {
+              "type": "boolean"
+            },
+            "primitives": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/primitive"
+              }
+            },
+            "parts": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/part"
+              }
+            },
+            "variants": {
+              "type": "object"
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "status",
+            "version",
+            "description",
+            "primitives"
+          ],
+          "additionalProperties": false,
+          "patternProperties": {
+            "^x_": {}
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "assets"
+  ],
+  "additionalProperties": false
+}

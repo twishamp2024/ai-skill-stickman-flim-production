@@ -1,0 +1,220 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/story_brief.schema.json",
+  "title": "Story brief",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "kage.story_brief/1"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/semver"
+    },
+    "status": {
+      "$ref": "common.schema.json#/$defs/status"
+    },
+    "source": {
+      "type": "string"
+    },
+    "source_sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "logline": {
+      "type": "string"
+    },
+    "main_plot": {
+      "type": "string"
+    },
+    "subplots": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "chronology": {
+      "type": "string"
+    },
+    "emotional_arc": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "event": {
+            "$ref": "common.schema.json#/$defs/id_evt"
+          },
+          "emotion": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "event",
+          "emotion"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "characters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id_chr"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "stated_gender": {
+            "type": "string"
+          },
+          "age": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "role"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "offscreen_characters": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "locations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id_loc"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "description"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "props": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sound_implied": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id_evt"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "importance": {
+            "enum": [
+              "essential",
+              "supporting",
+              "context"
+            ]
+          },
+          "location": {
+            "$ref": "common.schema.json#/$defs/id_loc"
+          },
+          "characters": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/id_chr"
+            }
+          },
+          "dialogue": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/id_line"
+            }
+          },
+          "covered_by_note": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "summary",
+          "importance"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "event_to_scene": {
+      "type": "object",
+      "patternProperties": {
+        "^evt_": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/id_scn"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "ambiguities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "issue": {
+            "type": "string"
+          },
+          "resolution": {
+            "type": "string"
+          },
+          "blocking": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "issue",
+          "resolution",
+          "blocking"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "source",
+    "logline",
+    "events",
+    "event_to_scene",
+    "ambiguities"
+  ],
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x_": {}
+  }
+}

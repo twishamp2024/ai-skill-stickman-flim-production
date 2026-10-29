@@ -1,0 +1,263 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/action.schema.json",
+  "title": "Action / motion event",
+  "type": "object",
+  "properties": {
+    "type": {
+      "enum": [
+        "walk",
+        "run",
+        "turn",
+        "sit",
+        "stand",
+        "fall",
+        "recover",
+        "gesture",
+        "talk",
+        "look",
+        "lean",
+        "reach",
+        "pick_up",
+        "put_down",
+        "keyframes",
+        "pose"
+      ]
+    },
+    "start": {
+      "$ref": "common.schema.json#/$defs/seconds"
+    },
+    "duration": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "blend_in": {
+      "$ref": "common.schema.json#/$defs/seconds"
+    },
+    "blend_out": {
+      "$ref": "common.schema.json#/$defs/seconds"
+    },
+    "hold": {
+      "type": "boolean"
+    },
+    "to_x": {
+      "$ref": "common.schema.json#/$defs/mark_or_number"
+    },
+    "seat_y": {
+      "$ref": "common.schema.json#/$defs/mark_or_number"
+    },
+    "facing": {
+      "enum": [
+        "left",
+        "right"
+      ]
+    },
+    "gesture": {
+      "enum": [
+        "wave",
+        "point",
+        "shrug",
+        "nod",
+        "head_shake",
+        "hands_on_hips",
+        "arms_crossed",
+        "clap"
+      ]
+    },
+    "side": {
+      "enum": [
+        "l",
+        "r"
+      ]
+    },
+    "intensity": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 2
+    },
+    "target": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/vec2"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "character": {
+              "$ref": "common.schema.json#/$defs/id_chr"
+            },
+            "joint": {
+              "$ref": "common.schema.json#/$defs/joint"
+            }
+          },
+          "required": [
+            "character"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "prop": {
+      "$ref": "common.schema.json#/$defs/id_inst"
+    },
+    "place_at": {
+      "$ref": "common.schema.json#/$defs/vec2"
+    },
+    "spine": {
+      "type": "number"
+    },
+    "neck": {
+      "type": "number"
+    },
+    "shift_x": {
+      "type": "number"
+    },
+    "channels": {
+      "type": "object",
+      "propertyNames": {
+        "enum": [
+          "spine",
+          "neck",
+          "tilt",
+          "shoulder_l",
+          "shoulder_r",
+          "elbow_l",
+          "elbow_r",
+          "hip_l",
+          "hip_r",
+          "knee_l",
+          "knee_r",
+          "ankle_l",
+          "ankle_r",
+          "pelvis_y",
+          "pelvis_x"
+        ]
+      },
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "common.schema.json#/$defs/ease"
+            }
+          ],
+          "minItems": 2,
+          "maxItems": 3
+        },
+        "minItems": 1
+      }
+    }
+  },
+  "required": [
+    "type",
+    "start",
+    "duration"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "enum": [
+              "walk",
+              "run"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "to_x"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "gesture"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "gesture"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "turn"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "facing"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "enum": [
+              "reach",
+              "look"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "target"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "enum": [
+              "pick_up",
+              "put_down"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "prop"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "enum": [
+              "keyframes",
+              "pose"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "channels"
+        ]
+      }
+    }
+  ],
+  "description": "Motion event. Units: seconds, metres, degrees (positive = forward lean / limb forward / flexion)."
+}

@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/production.schema.json",
+  "title": "Production manifest",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "kage.production/1"
+    },
+    "project_id": {
+      "type": "string",
+      "pattern": "^prj_[a-z0-9_]+$"
+    },
+    "title": {
+      "type": "string"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/semver"
+    },
+    "language": {
+      "type": "string"
+    },
+    "audience": {
+      "type": "string"
+    },
+    "tone": {
+      "type": "string"
+    },
+    "target_duration_s": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "fps": {
+      "$ref": "common.schema.json#/$defs/rational"
+    },
+    "sequence": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id_scn"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "formats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$"
+          },
+          "aspect": {
+            "$ref": "common.schema.json#/$defs/aspect"
+          },
+          "width": {
+            "type": "integer",
+            "minimum": 16
+          },
+          "height": {
+            "type": "integer",
+            "minimum": 16
+          },
+          "primary": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "aspect",
+          "width",
+          "height"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "delivery": {
+      "type": "object",
+      "properties": {
+        "container": {
+          "const": "mp4"
+        },
+        "video_codec": {
+          "type": "string"
+        },
+        "pixel_format": {
+          "type": "string"
+        },
+        "crf": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 51
+        },
+        "audio_codec": {
+          "type": "string"
+        },
+        "audio_bitrate": {
+          "type": "string"
+        },
+        "sample_rate": {
+          "enum": [
+            44100,
+            48000
+          ]
+        },
+        "channels": {
+          "enum": [
+            1,
+            2
+          ]
+        },
+        "loudness_lufs": {
+          "type": "number",
+          "maximum": -5
+        },
+        "true_peak_dbtp": {
+          "type": "number",
+          "maximum": 0
+        },
+        "subtitles": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "container",
+        "video_codec",
+        "pixel_format",
+        "audio_codec",
+        "sample_rate",
+        "channels",
+        "loudness_lufs",
+        "true_peak_dbtp"
+      ],
+      "additionalProperties": false
+    },
+    "approval_policy": {
+      "type": "object",
+      "properties": {
+        "render_requires": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/status"
+          }
+        },
+        "animatic_allows_draft": {
+          "type": "boolean"
+        },
+        "creative_changes_require_user": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "project_id",
+    "title",
+    "version",
+    "fps",
+    "sequence",
+    "formats",
+    "delivery"
+  ],
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x_": {}
+  }
+}

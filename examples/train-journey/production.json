@@ -1,0 +1,33 @@
+{
+  "schema": "kage.production/1",
+  "project_id": "prj_evening_train",
+  "title": "The Evening Train",
+  "version": "1.0.0",
+  "language": "en-US",
+  "audience": "general audience, all ages",
+  "tone": "warm, quiet, tender",
+  "target_duration_s": 26,
+  "fps": {"num": 24, "den": 1},
+  "sequence": ["scn_01", "scn_02"],
+  "formats": [
+    {"id": "landscape", "aspect": "16:9", "width": 1280, "height": 720, "primary": true},
+    {"id": "vertical", "aspect": "9:16", "width": 720, "height": 1280}
+  ],
+  "delivery": {
+    "container": "mp4", "video_codec": "libx264", "pixel_format": "yuv420p", "crf": 18,
+    "audio_codec": "aac", "audio_bitrate": "192k", "sample_rate": 48000, "channels": 2,
+    "loudness_lufs": -16.0, "true_peak_dbtp": -1.5, "subtitles": true
+  },
+  "approval_policy": {
+    "render_requires": ["approved", "locked"],
+    "animatic_allows_draft": true,
+    "creative_changes_require_user": true
+  },
+  "assumptions": [
+    "No narrator: the premise (visiting Nani) is carried by the dialogue; the opening premise sentence is not voiced.",
+    "Default delivery formats chosen because none were specified: 16:9 1280x720 primary plus a 9:16 vertical variant.",
+    "The conductor's gender is not stated in the story; they are presented gender-neutrally and referred to as 'the conductor'.",
+    "Screen direction: the train travels screen-right in every shot; scenery therefore moves screen-left.",
+    "Maya sits screen-left, Lila screen-right (window side) for the whole of scene 2."
+  ]
+}

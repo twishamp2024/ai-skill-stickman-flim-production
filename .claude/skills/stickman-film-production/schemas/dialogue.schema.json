@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/dialogue.schema.json",
+  "title": "Dialogue manifest",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "kage.dialogue/1"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/semver"
+    },
+    "status": {
+      "$ref": "common.schema.json#/$defs/status"
+    },
+    "speech_animation": {
+      "type": "object",
+      "properties": {
+        "default_mode": {
+          "enum": [
+            "none",
+            "simple",
+            "viseme"
+          ]
+        },
+        "gesture": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id_line"
+          },
+          "character": {
+            "$ref": "common.schema.json#/$defs/id_chr"
+          },
+          "voice": {
+            "$ref": "common.schema.json#/$defs/id_voc"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "language": {
+            "type": "string"
+          },
+          "shot": {
+            "$ref": "common.schema.json#/$defs/id_shot"
+          },
+          "offset_s": {
+            "$ref": "common.schema.json#/$defs/seconds"
+          },
+          "estimated_s": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "delivery": {
+            "type": "object",
+            "properties": {
+              "emotion": {
+                "type": "string"
+              },
+              "pace": {
+                "enum": [
+                  "slow",
+                  "normal",
+                  "fast"
+                ]
+              },
+              "volume": {
+                "enum": [
+                  "whisper",
+                  "soft",
+                  "normal",
+                  "loud",
+                  "shout"
+                ]
+              },
+              "pauses_ms": {
+                "type": "object",
+                "properties": {
+                  "after_word": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "number",
+                      "minimum": 0
+                    }
+                  }
+                },
+                "required": [],
+                "additionalProperties": false
+              },
+              "gesture": {
+                "enum": [
+                  "talk",
+                  "none"
+                ]
+              },
+              "overlap_with": {
+                "$ref": "common.schema.json#/$defs/id_line"
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          },
+          "subtitle": {
+            "type": "boolean"
+          },
+          "offscreen": {
+            "type": "boolean"
+          },
+          "voice_override_reason": {
+            "type": "string"
+          },
+          "translations": {
+            "type": "object"
+          },
+          "status": {
+            "$ref": "common.schema.json#/$defs/status"
+          }
+        },
+        "required": [
+          "id",
+          "character",
+          "voice",
+          "text",
+          "language",
+          "shot",
+          "offset_s",
+          "estimated_s",
+          "status"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "lines"
+  ],
+  "additionalProperties": false
+}

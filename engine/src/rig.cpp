@@ -105,6 +105,11 @@ Skeleton solveFK(const RigSpec& rig, const Pose& p) {
         double shift = -lowest * p.groundLock;
         for (auto& jf : s.j) jf.pos.y += shift;
     }
+    if (p.floorClamp) {
+        double lowest = std::min(s.soleY(0), s.soleY(1));
+        if (lowest < 0)
+            for (auto& jf : s.j) jf.pos.y -= lowest;
+    }
     return s;
 }
 

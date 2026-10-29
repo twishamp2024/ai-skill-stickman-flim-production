@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/delivery.schema.json",
+  "title": "Final delivery manifest (generated)",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "kage.delivery/1"
+    },
+    "project_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/semver"
+    },
+    "created": {
+      "type": "string"
+    },
+    "duration_s": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "frames": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "fps": {
+      "$ref": "common.schema.json#/$defs/rational"
+    },
+    "films": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "format": {
+            "type": "string"
+          },
+          "aspect": {
+            "$ref": "common.schema.json#/$defs/aspect"
+          },
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "qa": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "format",
+          "aspect",
+          "path",
+          "sha256",
+          "bytes",
+          "qa"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "supporting_files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "shot_exports": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "qa_reports": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "subjective_reviews": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "tools": {
+      "type": "object"
+    },
+    "provenance": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "project_id",
+    "title",
+    "films",
+    "qa_reports",
+    "provenance"
+  ],
+  "additionalProperties": false
+}

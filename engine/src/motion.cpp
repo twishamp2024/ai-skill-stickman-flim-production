@@ -193,6 +193,7 @@ CharacterState MotionEvaluator::evaluate(const Character& ch, double t, bool wit
     };
     Pose trans;
     bool inTransition = false;
+    const char* transitionName = "";
     double walkPhase = 0;
     bool walking = false, running = false;
     double walkWeight = 0;
@@ -244,6 +245,7 @@ CharacterState MotionEvaluator::evaluate(const Character& ch, double t, bool wit
                 trans.spine += 22 * std::sin(kPi * u);
                 if (a.hasToX) x = lerp(x0, a.toX, e);
                 inTransition = u < 1.0;
+                if (inTransition) transitionName = "to_sit";
                 if (u >= 1.0) posture = "sit";
                 break;
             }
@@ -255,6 +257,7 @@ CharacterState MotionEvaluator::evaluate(const Character& ch, double t, bool wit
                 trans.spine += 28 * std::sin(kPi * u);
                 if (a.hasToX) x = lerp(x, a.toX, e);
                 inTransition = u < 1.0;
+                if (inTransition) transitionName = "to_stand";
                 if (u >= 1.0) posture = "stand";
                 break;
             }
@@ -265,6 +268,7 @@ CharacterState MotionEvaluator::evaluate(const Character& ch, double t, bool wit
                 trans.shoulder[0] += 70 * std::sin(kPi * u);
                 trans.shoulder[1] += 90 * std::sin(kPi * u);
                 inTransition = u < 1.0;
+                if (inTransition) transitionName = "falling";
                 if (u >= 1.0) posture = "lie";
                 break;
             }
@@ -278,6 +282,7 @@ CharacterState MotionEvaluator::evaluate(const Character& ch, double t, bool wit
                 trans.hip[0] += 50 * std::sin(kPi * u);
                 trans.hip[1] += 50 * std::sin(kPi * u);
                 inTransition = u < 1.0;
+                if (inTransition) transitionName = "recovering";
                 if (u >= 1.0) posture = "stand";
                 break;
             }
@@ -435,7 +440,9 @@ CharacterState MotionEvaluator::evaluate(const Character& ch, double t, bool wit
     st.root = {x, groundY};
     st.facingSign = facing;
     st.facingScale = facingScale;
-    st.posture = posture;
+    // Report in-progress posture changes explicitly so QA does not judge a
+    // half-seated character by standing rules.
+    st.posture = inTransition ? transitionName : posture;
     st.pose = pose;
     st.skel = solveFK(r, pose);
     st.toWorld = Affine::translate(st.root) * Affine::scale(facingScale, 1.0);

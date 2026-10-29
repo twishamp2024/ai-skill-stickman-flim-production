@@ -1,0 +1,452 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/engine_scene.schema.json",
+  "title": "Engine scene (compiled contract v1)",
+  "type": "object",
+  "properties": {
+    "kage_scene_version": {
+      "type": "string",
+      "pattern": "^1\\.\\d+$"
+    },
+    "shot_id": {
+      "type": "string"
+    },
+    "format": {
+      "type": "string"
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 16,
+          "maximum": 8192
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 16,
+          "maximum": 8192
+        },
+        "fps": {
+          "$ref": "common.schema.json#/$defs/rational"
+        },
+        "frame_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "background": {
+          "$ref": "common.schema.json#/$defs/hex_color"
+        },
+        "safe_area": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 1
+        },
+        "time_offset": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "width",
+        "height",
+        "fps",
+        "frame_count"
+      ],
+      "additionalProperties": false
+    },
+    "layers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "order": {
+            "type": "number"
+          },
+          "parallax": {
+            "type": "number"
+          },
+          "depth": {
+            "type": "number"
+          },
+          "parallax_y": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "camera": {
+      "type": "object",
+      "properties": {
+        "projection": {
+          "enum": [
+            "orthographic",
+            "perspective"
+          ]
+        },
+        "focal_depth": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "keys": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "t": {
+                "$ref": "common.schema.json#/$defs/seconds"
+              },
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              },
+              "height": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "roll": {
+                "type": "number"
+              },
+              "ease": {
+                "$ref": "common.schema.json#/$defs/ease"
+              }
+            },
+            "required": [
+              "t",
+              "x",
+              "y",
+              "height"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        },
+        "follow": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "character": {
+                  "type": "string"
+                },
+                "offset": {
+                  "$ref": "common.schema.json#/$defs/vec2"
+                },
+                "smoothing": {
+                  "type": "number"
+                },
+                "axes": {
+                  "enum": [
+                    "x",
+                    "y",
+                    "xy"
+                  ]
+                }
+              },
+              "required": [
+                "character"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": [
+        "keys"
+      ],
+      "additionalProperties": false
+    },
+    "props": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "asset": {
+            "type": "string"
+          },
+          "layer": {
+            "type": "string"
+          },
+          "z": {
+            "type": "number"
+          },
+          "important": {
+            "type": "boolean"
+          },
+          "position": {
+            "$ref": "common.schema.json#/$defs/vec2"
+          },
+          "rotation": {
+            "type": "number"
+          },
+          "scale": {
+            "type": "number"
+          },
+          "flip": {
+            "type": "boolean"
+          },
+          "keys": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/transform_key"
+            }
+          },
+          "velocity": {
+            "$ref": "common.schema.json#/$defs/vec2"
+          },
+          "tile": {
+            "$ref": "common.schema.json#/$defs/tile"
+          },
+          "grip": {
+            "$ref": "common.schema.json#/$defs/vec2"
+          },
+          "primitives": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/primitive"
+            }
+          },
+          "parts": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/part"
+            }
+          },
+          "attach": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "t": {
+                  "$ref": "common.schema.json#/$defs/seconds"
+                },
+                "character": {
+                  "type": "string"
+                },
+                "joint": {
+                  "$ref": "common.schema.json#/$defs/joint"
+                },
+                "offset": {
+                  "$ref": "common.schema.json#/$defs/vec2"
+                },
+                "position": {
+                  "$ref": "common.schema.json#/$defs/vec2"
+                }
+              },
+              "required": [
+                "t"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "characters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "layer": {
+            "type": "string"
+          },
+          "z": {
+            "type": "number"
+          },
+          "important": {
+            "type": "boolean"
+          },
+          "rig": {
+            "type": "object",
+            "properties": {
+              "head_radius": {
+                "type": "number"
+              },
+              "neck": {
+                "type": "number"
+              },
+              "torso": {
+                "type": "number"
+              },
+              "shoulder_drop": {
+                "type": "number"
+              },
+              "upper_arm": {
+                "type": "number"
+              },
+              "forearm": {
+                "type": "number"
+              },
+              "hand_radius": {
+                "type": "number"
+              },
+              "thigh": {
+                "type": "number"
+              },
+              "shin": {
+                "type": "number"
+              },
+              "foot": {
+                "type": "number"
+              },
+              "ankle_height": {
+                "type": "number"
+              },
+              "line_width": {
+                "type": "number"
+              },
+              "stride": {
+                "type": "number"
+              },
+              "run_stride": {
+                "type": "number"
+              },
+              "arm_swing": {
+                "type": "number"
+              },
+              "energy": {
+                "type": "number"
+              },
+              "posture_spine": {
+                "type": "number"
+              },
+              "posture_neck": {
+                "type": "number"
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          },
+          "line_color": {
+            "$ref": "common.schema.json#/$defs/hex_color"
+          },
+          "head_fill": {
+            "$ref": "common.schema.json#/$defs/hex_color"
+          },
+          "accent_color": {
+            "$ref": "common.schema.json#/$defs/hex_color"
+          },
+          "face": {
+            "type": "boolean"
+          },
+          "face_style": {
+            "enum": [
+              "profile",
+              "front"
+            ]
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/primitive"
+            }
+          },
+          "start": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              },
+              "facing": {
+                "enum": [
+                  "left",
+                  "right"
+                ]
+              },
+              "posture": {
+                "enum": [
+                  "stand",
+                  "sit",
+                  "lie"
+                ]
+              },
+              "seat_y": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "x"
+            ],
+            "additionalProperties": false
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "$ref": "action.schema.json"
+            }
+          },
+          "mouth": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "enum": [
+                  "none",
+                  "simple",
+                  "viseme"
+                ]
+              },
+              "track": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              }
+            },
+            "required": [
+              "mode"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "id",
+          "rig",
+          "start"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "kage_scene_version",
+    "shot_id",
+    "output",
+    "camera"
+  ],
+  "additionalProperties": false,
+  "description": "Fully resolved scene consumed by kage_render. No story language, palette names or marks: colors are hex, positions numeric."
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "kage.story_brief/1",
+  "version": "1.0.0",
+  "status": "approved",
+  "source": "story/story.md",
+  "source_sha256": null,
+  "logline": "On an evening train, a child worried about being forgotten is reassured by her mother.",
+  "main_plot": "Maya and her daughter Lila ride a train to visit Lila's grandmother; Lila asks whether her grandmother will remember her and Maya reassures her.",
+  "subplots": [],
+  "chronology": "linear; no flashbacks",
+  "emotional_arc": [
+    {"event": "evt_02", "emotion": "calm wonder"},
+    {"event": "evt_07", "emotion": "quiet worry"},
+    {"event": "evt_08", "emotion": "warm reassurance"},
+    {"event": "evt_09", "emotion": "contentment"}
+  ],
+  "characters": [
+    {"id": "chr_maya", "name": "Maya", "role": "mother", "stated_gender": "woman (mother)", "age": "adult"},
+    {"id": "chr_lila", "name": "Lila", "role": "daughter", "stated_gender": "girl (daughter)", "age": "7"},
+    {"id": "chr_conductor", "name": "The conductor", "role": "railway conductor", "stated_gender": "not stated", "age": "older adult"}
+  ],
+  "offscreen_characters": [{"name": "Nani", "role": "Lila's grandmother", "note": "mentioned only"}],
+  "locations": [
+    {"id": "loc_countryside", "description": "hills and fields at sunset, railway line"},
+    {"id": "loc_carriage", "description": "interior of a passenger carriage with a long window bench"}
+  ],
+  "props": ["train", "window bench", "conductor's cap", "Maya's shoulder bag", "Lila's backpack"],
+  "sound_implied": ["train rolling on rails", "birds", "footsteps in the aisle", "seat creak", "train whistle"],
+  "events": [
+    {"id": "evt_01", "summary": "Premise: Maya and Lila travel to visit Nani.", "importance": "context", "characters": ["chr_maya", "chr_lila"], "covered_by_note": "implied through dialogue in evt_07"},
+    {"id": "evt_02", "summary": "The train curls through the hills at sunset; birds wheel over the fields.", "importance": "essential", "location": "loc_countryside"},
+    {"id": "evt_03", "summary": "Maya leads Lila by the hand down the aisle.", "importance": "essential", "location": "loc_carriage", "characters": ["chr_maya", "chr_lila"]},
+    {"id": "evt_04", "summary": "The conductor tips the cap and says the window seats are free.", "importance": "essential", "location": "loc_carriage", "characters": ["chr_conductor"], "dialogue": ["line_001"]},
+    {"id": "evt_05", "summary": "Lila hurries to the window seat; Maya sits beside her.", "importance": "essential", "location": "loc_carriage", "characters": ["chr_maya", "chr_lila"]},
+    {"id": "evt_06", "summary": "Lila gazes at the window, watching the hills.", "importance": "essential", "location": "loc_carriage", "characters": ["chr_lila"]},
+    {"id": "evt_07", "summary": "Lila turns and asks if Nani will remember her.", "importance": "essential", "characters": ["chr_lila"], "dialogue": ["line_002"]},
+    {"id": "evt_08", "summary": "Maya smiles and reassures her.", "importance": "essential", "characters": ["chr_maya"], "dialogue": ["line_003"]},
+    {"id": "evt_09", "summary": "Lila leans on Maya's shoulder as the light fades; the train rolls on into the night.", "importance": "essential", "characters": ["chr_maya", "chr_lila"]}
+  ],
+  "event_to_scene": {"evt_01": ["scn_02"], "evt_02": ["scn_01"], "evt_03": ["scn_02"], "evt_04": ["scn_02"], "evt_05": ["scn_02"], "evt_06": ["scn_02"], "evt_07": ["scn_02"], "evt_08": ["scn_02"], "evt_09": ["scn_02"]},
+  "ambiguities": [
+    {"issue": "Conductor's gender and name are not given.", "resolution": "Kept unnamed and gender-neutral; documented assumption.", "blocking": false},
+    {"issue": "Whether the opening premise should be narrated.", "resolution": "Not narrated; dialogue carries it.", "blocking": false},
+    {"issue": "Seating geometry is not described.", "resolution": "Long bench under a wide window; Lila on the window (right) side.", "blocking": false}
+  ]
+}

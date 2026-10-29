@@ -1,0 +1,38 @@
+{
+  "schema": "kage.reviews/1",
+  "reviews": [
+    {
+      "stage": "identity",
+      "reviewer": "claude-opus-5-5 (image-capable model)",
+      "kind": "visual",
+      "verdict": "approved",
+      "artifacts": [
+        "output/review/lineup_final.png",
+        "output/review/lineup_silhouette.png"
+      ],
+      "notes": "Viewed lineup PNGs. Maya/Lila/conductor distinct by height, head ratio, hair, headwear, accessories. Earlier revision failed (Maya's hair invisible, sleeves unreadable) and was fixed in the component library.",
+      "at": "2026-10-29T14:36:48"
+    },
+    {
+      "stage": "final:landscape",
+      "reviewer": "claude-opus-5-5 (image-capable model)",
+      "kind": "visual",
+      "verdict": "approved",
+      "artifacts": [
+        "output/review/contact_landscape.png",
+        "output/review/storyboard_landscape.png"
+      ],
+      "notes": "Viewed contact sheet and full-res frames at 9.0s, 12.5s, 16.0s, 21.5s of the delivered MP4. Earlier revisions failed review (window showed solid hill; feet sank during sit) and were fixed. Lean reads as 'resting against', closer to chest than shoulder.",
+      "at": "2026-10-29T14:36:48"
+    },
+    {
+      "stage": "audio",
+      "reviewer": "nobody",
+      "kind": "listening",
+      "verdict": "changes_requested",
+      "artifacts": [],
+      "notes": "NO LISTENING REVIEW PERFORMED: the authoring agent cannot hear audio. Only objective checks ran (loudness, true peak, ducking, sync, pitch estimates). A human should listen before release.",
+      "at": "2026-10-29T14:36:48"
+    }
+  ]
+}

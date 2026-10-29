@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/qa_report.schema.json",
+  "title": "QA report (generated)",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "kage.qa_report/1"
+    },
+    "project_id": {
+      "type": "string"
+    },
+    "stage": {
+      "type": "string"
+    },
+    "passed": {
+      "type": "boolean"
+    },
+    "checks_run": {
+      "type": "object"
+    },
+    "error_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "warning_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/qa_issue"
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "stage",
+    "passed"
+  ],
+  "additionalProperties": true
+}

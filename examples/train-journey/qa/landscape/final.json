@@ -1,0 +1,147 @@
+{
+  "schema": "kage.qa_report/1",
+  "project_id": "prj_evening_train",
+  "stage": "final:landscape",
+  "passed": true,
+  "export": {
+    "file": "/Users/twishamp/Documents/ai-skill-stickman-flim-production/examples/train-journey/output/the_evening_train_landscape.mp4",
+    "passed": true,
+    "checks": [
+      {
+        "check": "exists_nonempty",
+        "passed": true,
+        "detail": "3445996 bytes"
+      },
+      {
+        "check": "container",
+        "passed": true,
+        "detail": "mov,mp4,m4a,3gp,3g2,mj2"
+      },
+      {
+        "check": "video_stream",
+        "passed": true,
+        "detail": "1 video streams"
+      },
+      {
+        "check": "resolution",
+        "passed": true,
+        "detail": "1280x720 (expected 1280x720)"
+      },
+      {
+        "check": "aspect_ratio",
+        "passed": true,
+        "detail": "16:9"
+      },
+      {
+        "check": "frame_rate",
+        "passed": true,
+        "detail": "24/1 (expected 24/1)"
+      },
+      {
+        "check": "frame_count",
+        "passed": true,
+        "detail": "614 frames (expected 614)"
+      },
+      {
+        "check": "pixel_format",
+        "passed": true,
+        "detail": "yuv420p"
+      },
+      {
+        "check": "video_codec",
+        "passed": true,
+        "detail": "h264"
+      },
+      {
+        "check": "duration",
+        "passed": true,
+        "detail": "25.583s (expected 25.583s)"
+      },
+      {
+        "check": "audio_stream",
+        "passed": true,
+        "detail": "1 audio streams"
+      },
+      {
+        "check": "audio_sample_rate",
+        "passed": true,
+        "detail": "48000"
+      },
+      {
+        "check": "audio_channels",
+        "passed": true,
+        "detail": 2
+      },
+      {
+        "check": "audio_video_duration_match",
+        "passed": true,
+        "detail": "audio 25.567s vs video 25.583s"
+      },
+      {
+        "check": "subtitle_stream",
+        "passed": true,
+        "detail": "1 subtitle streams"
+      },
+      {
+        "check": "full_decode",
+        "passed": true,
+        "detail": "decoded without errors"
+      }
+    ]
+  },
+  "frame_checks": [
+    {
+      "shot": "shot_s01_010",
+      "frame": 48,
+      "psnr_db": 36.44,
+      "passed": true
+    },
+    {
+      "shot": "shot_s02_010",
+      "frame": 186,
+      "psnr_db": 37.82,
+      "passed": true
+    },
+    {
+      "shot": "shot_s02_020",
+      "frame": 331,
+      "psnr_db": 36.66,
+      "passed": true
+    },
+    {
+      "shot": "shot_s02_030",
+      "frame": 434,
+      "psnr_db": 38.52,
+      "passed": true
+    },
+    {
+      "shot": "shot_s02_040",
+      "frame": 548,
+      "psnr_db": 36.95,
+      "passed": true
+    }
+  ],
+  "dialogue_sync": [
+    {
+      "line": "line_001",
+      "start_s": 7.35,
+      "rms_before": 0.0977,
+      "rms_during": 0.2295,
+      "passed": true
+    },
+    {
+      "line": "line_002",
+      "start_s": 13.35,
+      "rms_before": 0.086,
+      "rms_during": 0.1263,
+      "passed": true
+    },
+    {
+      "line": "line_003",
+      "start_s": 16.583333,
+      "rms_before": 0.0844,
+      "rms_during": 0.2376,
+      "passed": true
+    }
+  ]
+}

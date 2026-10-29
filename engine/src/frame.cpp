@@ -70,15 +70,15 @@ struct WorldPrim {
 };
 
 Affine layerTransform(const Scene& scene, const Layer& layer, const CameraState& cam, double* pxPerUnit) {
-    double s = 1.0, p = layer.parallax;
+    double s = 1.0, p = layer.parallax, py = layer.parallaxY;
     if (scene.camera.projection == "perspective") {
         s = scene.camera.focalDepth / std::max(1e-3, scene.camera.focalDepth + layer.depth);
-        p = 1.0;
+        p = py = 1.0;
     }
     double ppu = scene.height / cam.height * s;
     if (pxPerUnit) *pxPerUnit = ppu;
     return Affine::translate({scene.width / 2.0, scene.height / 2.0}) * Affine::scale(1, -1) *
-           Affine::rotate(-deg2rad(cam.roll)) * Affine::scale(ppu, ppu) * Affine::translate(cam.pos * -p);
+           Affine::rotate(-deg2rad(cam.roll)) * Affine::scale(ppu, ppu) * Affine::translate({-cam.pos.x * p, -cam.pos.y * py});
 }
 
 Color styleColor(RenderStyle style, const Color& c) {
@@ -204,6 +204,12 @@ void FrameBuilder::build(int frame, DrawList& out, FrameProbe* probe) const {
         ep.mouth = cs.mouth;
         ep.soleY[0] = cs.toWorld.apply({0, cs.skel.soleY(0)}).y;
         ep.soleY[1] = cs.toWorld.apply({0, cs.skel.soleY(1)}).y;
+        {
+            Vec2 hp = layerXf[layer->id].apply(ep.head);
+            ep.headPx[0] = hp.x;
+            ep.headPx[1] = hp.y;
+            ep.headPx[2] = r.headRadius * layerPpu[layer->id];
+        }
         ents.push_back(ep);
 
         auto limb = [&](std::initializer_list<int> joints, double z) {

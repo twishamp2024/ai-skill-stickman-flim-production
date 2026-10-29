@@ -1,0 +1,6 @@
+{
+  "schema": "kage.asset_registry/1",
+  "version": "0.1.0",
+  "units": "metres, asset-local, y up",
+  "assets": {}
+}

@@ -1,0 +1,188 @@
+{
+  "schema": "kage.shot/1",
+  "id": "shot_s02_010",
+  "scene": "scn_02",
+  "version": "0.1.0",
+  "status": "draft",
+  "covers": [
+    "evt_03",
+    "evt_04",
+    "evt_05"
+  ],
+  "purpose": "Maya leads Lila down the aisle; the conductor greets them; Lila hurries to the window seat and both sit.",
+  "duration_s": 7.5,
+  "timing": {
+    "flex": true,
+    "max_s": 9.0
+  },
+  "cast": [
+    {
+      "character": "chr_maya",
+      "z": 0.0,
+      "start": {
+        "x": -3.4,
+        "facing": "right"
+      },
+      "actions": [
+        {
+          "type": "walk",
+          "start": 0.2,
+          "duration": 3.2,
+          "to_x": -0.35
+        },
+        {
+          "type": "pose",
+          "start": 0.2,
+          "duration": 3.0,
+          "blend_in": 0.3,
+          "blend_out": 0.4,
+          "channels": {
+            "shoulder_l": [
+              [
+                0,
+                -38
+              ]
+            ],
+            "elbow_l": [
+              [
+                0,
+                8
+              ]
+            ]
+          }
+        },
+        {
+          "type": "walk",
+          "start": 4.7,
+          "duration": 0.8,
+          "to_x": "@seat_maya"
+        },
+        {
+          "type": "sit",
+          "start": 5.7,
+          "duration": 0.9,
+          "seat_y": "@seat_maya"
+        }
+      ]
+    },
+    {
+      "character": "chr_lila",
+      "z": 0.2,
+      "start": {
+        "x": -4.1,
+        "facing": "right"
+      },
+      "actions": [
+        {
+          "type": "walk",
+          "start": 0.2,
+          "duration": 3.2,
+          "to_x": -1.05
+        },
+        {
+          "type": "reach",
+          "start": 0.2,
+          "duration": 3.2,
+          "side": "r",
+          "blend_in": 0.3,
+          "blend_out": 0.35,
+          "target": {
+            "character": "chr_maya",
+            "joint": "hand_l"
+          }
+        },
+        {
+          "type": "look",
+          "start": 3.3,
+          "duration": 1.2,
+          "target": {
+            "character": "chr_conductor",
+            "joint": "head"
+          }
+        },
+        {
+          "type": "run",
+          "start": 4.4,
+          "duration": 0.9,
+          "to_x": "@seat_lila"
+        },
+        {
+          "type": "sit",
+          "start": 5.35,
+          "duration": 0.8,
+          "seat_y": "@seat_lila"
+        }
+      ]
+    },
+    {
+      "character": "chr_conductor",
+      "z": -0.2,
+      "start": {
+        "x": 2.7,
+        "facing": "left"
+      },
+      "actions": [
+        {
+          "type": "gesture",
+          "gesture": "wave",
+          "side": "r",
+          "start": 3.2,
+          "duration": 1.1
+        }
+      ]
+    }
+  ],
+  "props": [],
+  "camera": {
+    "framing": "wide",
+    "subjects": [
+      "chr_maya",
+      "chr_lila",
+      "chr_conductor"
+    ],
+    "angle": "eye",
+    "move": {
+      "type": "static"
+    },
+    "variants": {
+      "9:16": {
+        "framing": "wide",
+        "subjects": [
+          "chr_maya"
+        ],
+        "move": {
+          "type": "follow",
+          "character": "chr_maya",
+          "smoothing": 0.4,
+          "offset_x": -0.3
+        }
+      }
+    }
+  },
+  "dialogue": [
+    "line_001"
+  ],
+  "transition_in": {
+    "type": "cut"
+  },
+  "transition_out": {
+    "type": "cut"
+  },
+  "continuity": {
+    "offscreen": [],
+    "entrances": [
+      "chr_maya",
+      "chr_lila",
+      "chr_conductor"
+    ],
+    "exits": []
+  },
+  "framing": {
+    "allow_partial": [
+      "inst_wall",
+      "inst_view_hills",
+      "inst_view_trees",
+      "inst_bench"
+    ]
+  }
+}

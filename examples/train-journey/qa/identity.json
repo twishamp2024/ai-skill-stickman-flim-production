@@ -1,0 +1,111 @@
+{
+  "schema": "kage.qa_report/1",
+  "project_id": "prj_evening_train",
+  "stage": "identity",
+  "passed": true,
+  "silhouette_pairs": [
+    {
+      "a": "chr_conductor",
+      "b": "chr_lila",
+      "iou": 0.3876,
+      "distinguishing": [
+        "height",
+        "components: acc.backpack, acc.glasses, acc.uniform_cap, bottom.shorts, bottom.trousers, hair.ponytail, hair.short_crop, top.jacket, top.long_sleeve",
+        "palette"
+      ]
+    },
+    {
+      "a": "chr_conductor",
+      "b": "chr_maya",
+      "iou": 0.6645,
+      "distinguishing": [
+        "components: acc.glasses, acc.shoulder_bag, acc.uniform_cap, top.jacket, top.long_sleeve",
+        "palette"
+      ]
+    },
+    {
+      "a": "chr_lila",
+      "b": "chr_maya",
+      "iou": 0.4126,
+      "distinguishing": [
+        "height",
+        "components: acc.backpack, acc.shoulder_bag, bottom.shorts, bottom.trousers, hair.ponytail, hair.short_crop",
+        "palette"
+      ]
+    }
+  ],
+  "signatures": {
+    "chr_conductor": {
+      "height_m": 1.68,
+      "head_ratio": 0.143,
+      "components": [
+        "acc.glasses",
+        "acc.uniform_cap",
+        "bottom.trousers",
+        "hair.short_crop",
+        "shoes.basic",
+        "top.long_sleeve"
+      ],
+      "palette": {
+        "accessory": "navy",
+        "bottom": "navy",
+        "hair": "hair_grey",
+        "head_fill": "paper",
+        "line": "ink",
+        "shoes": "ink",
+        "top": "navy"
+      },
+      "build": "broad"
+    },
+    "chr_lila": {
+      "height_m": 1.2,
+      "head_ratio": 0.179,
+      "components": [
+        "acc.backpack",
+        "bottom.shorts",
+        "hair.ponytail",
+        "shoes.basic",
+        "top.jacket"
+      ],
+      "palette": {
+        "accessory": "coral",
+        "bottom": "denim",
+        "hair": "hair_auburn",
+        "head_fill": "paper",
+        "line": "ink",
+        "shoes": "coral",
+        "top": "sunflower"
+      },
+      "build": "slim"
+    },
+    "chr_maya": {
+      "height_m": 1.66,
+      "head_ratio": 0.139,
+      "components": [
+        "acc.shoulder_bag",
+        "bottom.trousers",
+        "hair.short_crop",
+        "shoes.basic",
+        "top.jacket"
+      ],
+      "palette": {
+        "accessory": "mustard",
+        "bottom": "slate",
+        "hair": "hair_dark",
+        "head_fill": "paper",
+        "line": "ink",
+        "shoes": "ink",
+        "top": "plum"
+      },
+      "build": "average"
+    }
+  },
+  "previews": [
+    "output/review/lineup_final.png",
+    "output/review/lineup_flat.png",
+    "output/review/lineup_silhouette.png",
+    "output/review/lineup_small.png"
+  ],
+  "issues": [],
+  "visual_review": "not recorded by this task; use `kage.py review --stage identity`"
+}

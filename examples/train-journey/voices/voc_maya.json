@@ -1,0 +1,22 @@
+{
+  "schema": "kage.voice/1",
+  "id": "voc_maya",
+  "character": "chr_maya",
+  "version": "1.0.0",
+  "status": "approved",
+  "provider": "macos_say",
+  "provider_voice": "Samantha",
+  "language": "en-US",
+  "accent": "General American",
+  "perceived_age": "adult",
+  "style": "warm, unhurried",
+  "pitch": {"pbas": null},
+  "rate_wpm": 165,
+  "timbre": "clear mid",
+  "expressiveness": "low (provider exposes rate, volume, pitch base and pauses only)",
+  "pronunciations": {"Nani": "Nahnee"},
+  "settings": {},
+  "fallbacks": [],
+  "approved_sample": null,
+  "consent": "synthetic system voice; not a clone of any real person"
+}

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/task_graph.schema.json",
+  "title": "Task and dependency graph (generated)",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "kage.task_graph/1"
+    },
+    "project_id": {
+      "type": "string"
+    },
+    "concurrency": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "validate",
+              "identity",
+              "voice",
+              "timeline",
+              "compile",
+              "render",
+              "shotqa",
+              "continuity",
+              "mix",
+              "assemble",
+              "exportqa",
+              "deliver"
+            ]
+          },
+          "deps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "resource": {
+            "enum": [
+              "cpu",
+              "gpu"
+            ]
+          },
+          "max_attempts": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "outputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "enum": [
+              "pending",
+              "running",
+              "done",
+              "cached",
+              "failed",
+              "blocked"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "deps",
+          "resource",
+          "status"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "tasks"
+  ],
+  "additionalProperties": false
+}

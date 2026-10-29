@@ -1,0 +1,260 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kage/shot.schema.json",
+  "title": "Shot",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "kage.shot/1"
+    },
+    "id": {
+      "$ref": "common.schema.json#/$defs/id_shot"
+    },
+    "scene": {
+      "$ref": "common.schema.json#/$defs/id_scn"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/semver"
+    },
+    "status": {
+      "$ref": "common.schema.json#/$defs/status"
+    },
+    "covers": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id_evt"
+      }
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "duration_s": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "timing": {
+      "type": "object",
+      "properties": {
+        "flex": {
+          "type": "boolean"
+        },
+        "min_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "cast": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "character": {
+            "$ref": "common.schema.json#/$defs/id_chr"
+          },
+          "variant": {
+            "type": "string"
+          },
+          "layer": {
+            "type": "string"
+          },
+          "z": {
+            "type": "number"
+          },
+          "start": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "$ref": "common.schema.json#/$defs/mark_or_number"
+              },
+              "y": {
+                "type": "number"
+              },
+              "facing": {
+                "enum": [
+                  "left",
+                  "right"
+                ]
+              },
+              "posture": {
+                "enum": [
+                  "stand",
+                  "sit",
+                  "lie"
+                ]
+              },
+              "seat_y": {
+                "$ref": "common.schema.json#/$defs/mark_or_number"
+              }
+            },
+            "required": [
+              "x"
+            ],
+            "additionalProperties": false
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "$ref": "action.schema.json"
+            }
+          }
+        },
+        "required": [
+          "character",
+          "start"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "props": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id_inst"
+          },
+          "asset": {
+            "$ref": "common.schema.json#/$defs/id_ast"
+          },
+          "layer": {
+            "type": "string"
+          },
+          "position": {
+            "$ref": "common.schema.json#/$defs/vec2"
+          },
+          "rotation": {
+            "type": "number"
+          },
+          "scale": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "flip": {
+            "type": "boolean"
+          },
+          "keys": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/transform_key"
+            },
+            "minItems": 1
+          },
+          "velocity": {
+            "$ref": "common.schema.json#/$defs/vec2"
+          },
+          "tile": {
+            "$ref": "common.schema.json#/$defs/tile"
+          },
+          "z": {
+            "type": "number"
+          },
+          "important": {
+            "type": "boolean"
+          },
+          "grip": {
+            "$ref": "common.schema.json#/$defs/vec2"
+          },
+          "attach": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "asset"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "camera": {
+      "$ref": "camera.schema.json"
+    },
+    "dialogue": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id_line"
+      }
+    },
+    "transition_in": {
+      "$ref": "common.schema.json#/$defs/transition"
+    },
+    "transition_out": {
+      "$ref": "common.schema.json#/$defs/transition"
+    },
+    "continuity": {
+      "type": "object",
+      "properties": {
+        "offscreen": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/id_chr"
+          }
+        },
+        "entrances": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/id_chr"
+          }
+        },
+        "exits": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/id_chr"
+          }
+        },
+        "allow_screen_direction_change": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "framing": {
+      "type": "object",
+      "properties": {
+        "allow_partial": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "qa": {
+      "type": "object"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "id",
+    "scene",
+    "version",
+    "status",
+    "covers",
+    "purpose",
+    "duration_s",
+    "cast",
+    "camera"
+  ],
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x_": {}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "kage.scene/1",
+  "id": "scn_02",
+  "version": "0.1.0",
+  "status": "draft",
+  "title": "Inside the carriage",
+  "location": "loc_carriage",
+  "events": [
+    "evt_03",
+    "evt_04",
+    "evt_05",
+    "evt_06",
+    "evt_07",
+    "evt_08",
+    "evt_09"
+  ],
+  "shots": [
+    "shot_s02_010",
+    "shot_s02_020",
+    "shot_s02_030",
+    "shot_s02_040"
+  ],
+  "continuity": {
+    "screen_direction": "train travels screen-right; scenery scrolls screen-left",
+    "character_sides": {
+      "chr_maya": "left",
+      "chr_lila": "right"
+    }
+  }
+}

@@ -141,7 +141,8 @@ struct Character {
 struct Layer {
     std::string id;
     double order = 0;
-    double parallax = 1.0;  // orthographic: fraction of camera motion applied
+    double parallax = 1.0;  // orthographic: fraction of horizontal camera motion applied
+    double parallaxY = 1.0; // orthographic: fraction of vertical camera motion (defaults to parallax)
     double depth = 0.0;     // perspective: distance behind the subject plane
 };
 

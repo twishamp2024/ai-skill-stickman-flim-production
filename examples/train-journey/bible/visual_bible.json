@@ -1,0 +1,72 @@
+{
+  "schema": "kage.visual_bible/1",
+  "version": "1.0.0",
+  "status": "locked",
+  "component_library_version": "1.0.0",
+  "age_profiles_version": "1.0.0",
+  "coordinates": {
+    "units": "metres",
+    "origin": "location ground line at y = 0; +x screen-right, +y up",
+    "angles": "degrees; joint angles positive = forward/flexion (see engine contract)",
+    "time": "seconds within the shot; frames derived from production fps"
+  },
+  "style": {
+    "body_line_width": 0.045,
+    "cap": "round",
+    "join": "round",
+    "outline_width": 0.02,
+    "fills": "solid flat colour only; no gradients, textures, shadows or glow",
+    "transparency": "opaque only, except assets that declare transparency",
+    "head_shape": "circle",
+    "face": "optional profile eye and simple mouth; no nose, no ears",
+    "max_palette_colors_per_location": 12,
+    "lineup_background": "paper"
+  },
+  "palette": {
+    "ink": "#1f1d24",
+    "paper": "#fbf7ee",
+    "sky_dusk": "#f3b886",
+    "sun": "#fbe3a6",
+    "hill_far": "#a493b8",
+    "hill_near": "#7d9a72",
+    "grass": "#8fae63",
+    "tree_green": "#5b7f4d",
+    "trunk": "#6b4a3a",
+    "rail": "#5b5552",
+    "train_body": "#2f6f73",
+    "train_trim": "#e3c565",
+    "glass": "#cfe3dc",
+    "wheel": "#2b2b2b",
+    "wall": "#eadcc3",
+    "floor": "#b49d82",
+    "seat": "#b5523b",
+    "seat_dark": "#7a3a2a",
+    "frame_wood": "#8a6d55",
+    "hair_dark": "#5a3a2c",
+    "hair_auburn": "#9b4a2c",
+    "hair_grey": "#c9c3bd",
+    "plum": "#7b4b7a",
+    "slate": "#4a5368",
+    "mustard": "#d9a441",
+    "sunflower": "#f0c541",
+    "denim": "#4c6a9a",
+    "coral": "#e07a5f",
+    "navy": "#2e3a5c",
+    "brass": "#c9a24a"
+  },
+  "layering": {
+    "order": ["sky", "far", "mid", "near", "wall", "furniture", "actors", "foreground"],
+    "character_internal_z": {"back_arm": -3, "back_leg": -2, "torso": 0, "front_leg": 1, "head": 2, "face": 2.5, "front_arm": 3},
+    "rule": "Components use z offsets relative to these body parts; back-side garments sit just above the back limb, front-side garments just above the front limb."
+  },
+  "camera_conventions": {
+    "default_projection": "orthographic",
+    "framings": {"wide": "full bodies with room", "medium": "two-shot, knees/waist up", "close": "head and shoulders", "extreme_close": "head only"},
+    "safe_area": 0.9,
+    "screen_direction": "Preserve left/right order of characters across cuts unless a shot declares an intentional change."
+  },
+  "approval": {
+    "statuses": ["draft", "review", "approved", "locked"],
+    "rule": "Locked/approved files may change only with a version bump recorded via `kage.py approve`; downstream shots are invalidated by content hash."
+  }
+}

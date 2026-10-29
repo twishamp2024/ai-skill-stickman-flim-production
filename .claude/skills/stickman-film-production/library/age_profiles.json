@@ -1,0 +1,16 @@
+{
+  "schema": "kage.age_profiles/1",
+  "version": "1.0.0",
+  "description": "Reference proportions per age category. All fractions are of total standing height. Age is independent of gender presentation: no field here is selected by gender.",
+  "profiles": {
+    "infant":      {"ages": [0, 2],   "default_height_m": 0.75, "heads_tall": 4.0, "leg_fraction": 0.33, "arm_fraction": 0.34, "neck_fraction": 0.015, "line_scale": 0.75, "stride_legs": 0.9,  "run_stride_legs": 1.3, "energy": 0.6,  "arm_swing": 14, "posture_spine": 0, "posture_neck": 0},
+    "young_child": {"ages": [2, 5],   "default_height_m": 0.98, "heads_tall": 4.7, "leg_fraction": 0.38, "arm_fraction": 0.35, "neck_fraction": 0.02,  "line_scale": 0.8,  "stride_legs": 1.5,  "run_stride_legs": 2.3, "energy": 1.3,  "arm_swing": 26, "posture_spine": 0, "posture_neck": 0},
+    "child":       {"ages": [5, 12],  "default_height_m": 1.20, "heads_tall": 5.6, "leg_fraction": 0.42, "arm_fraction": 0.36, "neck_fraction": 0.025, "line_scale": 0.85, "stride_legs": 1.7,  "run_stride_legs": 2.6, "energy": 1.25, "arm_swing": 26, "posture_spine": 0, "posture_neck": 0},
+    "teen":        {"ages": [12, 18], "default_height_m": 1.62, "heads_tall": 6.6, "leg_fraction": 0.47, "arm_fraction": 0.37, "neck_fraction": 0.03,  "line_scale": 0.95, "stride_legs": 1.6,  "run_stride_legs": 2.7, "energy": 1.1,  "arm_swing": 22, "posture_spine": 1, "posture_neck": 2},
+    "adult":       {"ages": [18, 60], "default_height_m": 1.70, "heads_tall": 7.2, "leg_fraction": 0.48, "arm_fraction": 0.37, "neck_fraction": 0.03,  "line_scale": 1.0,  "stride_legs": 1.55, "run_stride_legs": 2.6, "energy": 1.0,  "arm_swing": 20, "posture_spine": 0, "posture_neck": 0},
+    "older_adult": {"ages": [60, 120],"default_height_m": 1.66, "heads_tall": 7.0, "leg_fraction": 0.47, "arm_fraction": 0.37, "neck_fraction": 0.03,  "line_scale": 1.0,  "stride_legs": 1.25, "run_stride_legs": 1.8, "energy": 0.75, "arm_swing": 12, "posture_spine": 7, "posture_neck": 9}
+  },
+  "builds": {
+    "slim": 0.85, "average": 1.0, "broad": 1.25, "round": 1.45
+  }
+}

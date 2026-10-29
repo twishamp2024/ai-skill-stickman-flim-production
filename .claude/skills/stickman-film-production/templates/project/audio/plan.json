@@ -1,0 +1,15 @@
+{
+  "schema": "kage.audio_plan/1",
+  "version": "0.1.0",
+  "status": "draft",
+  "assets": {},
+  "events": [],
+  "animation_sfx": [],
+  "ambience": {
+    "by_location": true,
+    "crossfade_s": 0.4,
+    "gain_db": -22
+  },
+  "music": [],
+  "silence": []
+}

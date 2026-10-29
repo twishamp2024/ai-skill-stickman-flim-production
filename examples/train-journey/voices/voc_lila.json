@@ -1,0 +1,22 @@
+{
+  "schema": "kage.voice/1",
+  "id": "voc_lila",
+  "character": "chr_lila",
+  "version": "1.0.0",
+  "status": "approved",
+  "provider": "macos_say",
+  "provider_voice": "Flo (English (US))",
+  "language": "en-US",
+  "accent": "General American",
+  "perceived_age": "child",
+  "style": "bright, curious, a little shy",
+  "pitch": {"pbas": 72},
+  "rate_wpm": 175,
+  "timbre": "light",
+  "expressiveness": "low (provider exposes rate, volume, pitch base and pauses only)",
+  "pronunciations": {"Nani": "Nahnee"},
+  "settings": {},
+  "fallbacks": [{"provider": "macos_say", "provider_voice": "Samantha", "pitch": {"pbas": 75}}],
+  "approved_sample": null,
+  "consent": "synthetic system voice; not a clone of any real person"
+}
